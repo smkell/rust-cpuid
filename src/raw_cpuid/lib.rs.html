@@ -1465,86 +1465,86 @@
 
 <span class='kw'>impl</span> <span class='ident'>CpuId</span> {
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_vendor_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>CpuIdVendorInfo</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_vendor_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>VendorInfo</span> {
         <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='number'>0</span>);
-        <span class='ident'>CpuIdVendorInfo</span> { <span class='ident'>ebx</span>: <span class='ident'>res</span>.<span class='ident'>ebx</span>, <span class='ident'>ecx</span>: <span class='ident'>res</span>.<span class='ident'>ecx</span>, <span class='ident'>edx</span>: <span class='ident'>res</span>.<span class='ident'>edx</span> }
+        <span class='ident'>VendorInfo</span> { <span class='ident'>ebx</span>: <span class='ident'>res</span>.<span class='ident'>ebx</span>, <span class='ident'>ecx</span>: <span class='ident'>res</span>.<span class='ident'>ecx</span>, <span class='ident'>edx</span>: <span class='ident'>res</span>.<span class='ident'>edx</span> }
     }
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_feature_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>CpuIdFeatureInfo</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_feature_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>FeatureInfo</span> {
         <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='number'>1</span>);
-        <span class='ident'>CpuIdFeatureInfo</span> { <span class='ident'>eax</span>: <span class='ident'>res</span>.<span class='ident'>eax</span>,
+        <span class='ident'>FeatureInfo</span> { <span class='ident'>eax</span>: <span class='ident'>res</span>.<span class='ident'>eax</span>,
                            <span class='ident'>ebx</span>: <span class='ident'>res</span>.<span class='ident'>ebx</span>,
                            <span class='ident'>ecx</span>: <span class='ident'>FeatureInfoEcx</span> { <span class='ident'>bits</span>: <span class='ident'>res</span>.<span class='ident'>ecx</span> },
                            <span class='ident'>edx</span>: <span class='ident'>FeatureInfoEdx</span> { <span class='ident'>bits</span>: <span class='ident'>res</span>.<span class='ident'>edx</span> },
         }
     }
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_cache_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>CpuIdCacheInfoIter</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_cache_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>CacheInfoIter</span> {
         <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='number'>2</span>);
-        <span class='ident'>CpuIdCacheInfoIter</span> { <span class='ident'>current</span>: <span class='number'>1</span>,
+        <span class='ident'>CacheInfoIter</span> { <span class='ident'>current</span>: <span class='number'>1</span>,
                              <span class='ident'>eax</span>: <span class='ident'>res</span>.<span class='ident'>eax</span>,
                              <span class='ident'>ebx</span>: <span class='ident'>res</span>.<span class='ident'>ebx</span>,
                              <span class='ident'>ecx</span>: <span class='ident'>res</span>.<span class='ident'>ecx</span>,
                              <span class='ident'>edx</span>: <span class='ident'>res</span>.<span class='ident'>edx</span> }
     }
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_cache_parameters</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>CpuIdCacheParameterIter</span> {
-        <span class='ident'>CpuIdCacheParameterIter</span> { <span class='ident'>current</span>: <span class='number'>0</span> }
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_cache_parameters</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>CacheParametersIter</span> {
+        <span class='ident'>CacheParametersIter</span> { <span class='ident'>current</span>: <span class='number'>0</span> }
     }
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_monitor_mwait_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>CpuIdMonitorMwait</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_monitor_mwait_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>MonitorMwaitInfo</span> {
         <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='number'>5</span>);
-        <span class='ident'>CpuIdMonitorMwait</span> { <span class='ident'>eax</span>: <span class='ident'>res</span>.<span class='ident'>eax</span>,
+        <span class='ident'>MonitorMwaitInfo</span> { <span class='ident'>eax</span>: <span class='ident'>res</span>.<span class='ident'>eax</span>,
                             <span class='ident'>ebx</span>: <span class='ident'>res</span>.<span class='ident'>ebx</span>,
                             <span class='ident'>ecx</span>: <span class='ident'>res</span>.<span class='ident'>ecx</span>,
                             <span class='ident'>edx</span>: <span class='ident'>res</span>.<span class='ident'>edx</span> }
     }
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_thermal_power_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>CpuIdThermalPower</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_thermal_power_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>ThermalPowerInfo</span> {
         <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='number'>6</span>);
-        <span class='ident'>CpuIdThermalPower</span> { <span class='ident'>eax</span>: <span class='ident'>ThermalPowerFeaturesEax</span> { <span class='ident'>bits</span>: <span class='ident'>res</span>.<span class='ident'>eax</span> },
+        <span class='ident'>ThermalPowerInfo</span> { <span class='ident'>eax</span>: <span class='ident'>ThermalPowerFeaturesEax</span> { <span class='ident'>bits</span>: <span class='ident'>res</span>.<span class='ident'>eax</span> },
                             <span class='ident'>ebx</span>: <span class='ident'>res</span>.<span class='ident'>ebx</span>,
                             <span class='ident'>ecx</span>: <span class='ident'>ThermalPowerFeaturesEcx</span> { <span class='ident'>bits</span>: <span class='ident'>res</span>.<span class='ident'>ecx</span> },
                             <span class='ident'>edx</span>: <span class='ident'>res</span>.<span class='ident'>edx</span> }
     }
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_extended_feature_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>CpuIdExtendedFeature</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_extended_feature_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>ExtendedFeatures</span> {
         <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='number'>7</span>);
         <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>res</span>.<span class='ident'>eax</span> <span class='op'>==</span> <span class='number'>0</span>);
-        <span class='ident'>CpuIdExtendedFeature</span> { <span class='ident'>eax</span>: <span class='ident'>res</span>.<span class='ident'>eax</span>,
+        <span class='ident'>ExtendedFeatures</span> { <span class='ident'>eax</span>: <span class='ident'>res</span>.<span class='ident'>eax</span>,
                                <span class='ident'>ebx</span>: <span class='ident'>ExtendedFeaturesEbx</span> { <span class='ident'>bits</span>: <span class='ident'>res</span>.<span class='ident'>ebx</span> },
                                <span class='ident'>ecx</span>: <span class='ident'>res</span>.<span class='ident'>ecx</span>,
                                <span class='ident'>edx</span>: <span class='ident'>res</span>.<span class='ident'>edx</span> }
 
     }
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_direct_cache_access_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>CpuIdDirectCacheAccess</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_direct_cache_access_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>DirectCacheAccessInfo</span> {
         <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='number'>9</span>);
-        <span class='ident'>CpuIdDirectCacheAccess</span>{ <span class='ident'>eax</span>: <span class='ident'>res</span>.<span class='ident'>eax</span> }
+        <span class='ident'>DirectCacheAccessInfo</span>{ <span class='ident'>eax</span>: <span class='ident'>res</span>.<span class='ident'>eax</span> }
     }
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_performance_monitoring_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>CpuIdPerformanceMonitoring</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_performance_monitoring_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>PerformanceMonitoringInfo</span> {
         <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='number'>10</span>);
-        <span class='ident'>CpuIdPerformanceMonitoring</span>{ <span class='ident'>eax</span>: <span class='ident'>res</span>.<span class='ident'>eax</span>,
+        <span class='ident'>PerformanceMonitoringInfo</span>{ <span class='ident'>eax</span>: <span class='ident'>res</span>.<span class='ident'>eax</span>,
                                     <span class='ident'>ebx</span>: <span class='ident'>PerformanceMonitoringFeaturesEbx</span>{ <span class='ident'>bits</span>: <span class='ident'>res</span>.<span class='ident'>ebx</span> },
                                     <span class='ident'>ecx</span>: <span class='ident'>res</span>.<span class='ident'>ecx</span>,
                                     <span class='ident'>edx</span>: <span class='ident'>res</span>.<span class='ident'>edx</span> }
     }
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_extended_topology_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>CpuIdExtendedTopologyIter</span> {
-        <span class='ident'>CpuIdExtendedTopologyIter</span> { <span class='ident'>level</span>: <span class='number'>0</span> }
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_extended_topology_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>ExtendedTopologyIter</span> {
+        <span class='ident'>ExtendedTopologyIter</span> { <span class='ident'>level</span>: <span class='number'>0</span> }
     }
 }
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CpuIdVendorInfo</span> {
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>VendorInfo</span> {
     <span class='kw'>pub</span> <span class='ident'>ebx</span>: <span class='ident'>u32</span>,
     <span class='kw'>pub</span> <span class='ident'>ecx</span>: <span class='ident'>u32</span>,
     <span class='kw'>pub</span> <span class='ident'>edx</span>: <span class='ident'>u32</span>,
 }
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CpuIdCacheInfoIter</span> {
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CacheInfoIter</span> {
     <span class='ident'>current</span>: <span class='ident'>u32</span>,
     <span class='kw'>pub</span> <span class='ident'>eax</span>: <span class='ident'>u32</span>,
     <span class='kw'>pub</span> <span class='ident'>ebx</span>: <span class='ident'>u32</span>,
@@ -1552,7 +1552,7 @@
     <span class='kw'>pub</span> <span class='ident'>edx</span>: <span class='ident'>u32</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>Iterator</span> <span class='kw'>for</span> <span class='ident'>CpuIdCacheInfoIter</span> {
+<span class='kw'>impl</span> <span class='ident'>Iterator</span> <span class='kw'>for</span> <span class='ident'>CacheInfoIter</span> {
     <span class='kw'>type</span> <span class='ident'>Item</span> <span class='op'>=</span> <span class='ident'>CacheInfo</span>;
 
     <span class='kw'>fn</span> <span class='ident'>next</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>CacheInfo</span><span class='op'>&gt;</span> {
@@ -1725,7 +1725,7 @@
     <span class='ident'>CacheInfo</span>{<span class='ident'>num</span>: <span class='number'>0xFF</span>, <span class='ident'>typ</span>: <span class='ident'>CacheInfoType</span>::<span class='ident'>GENERAL</span>, <span class='ident'>desc</span>: <span class='string'>&quot;CPUID leaf 2 does not report cache descriptor information, use CPUID leaf 4 to query cache parameters&quot;</span>},
 ];
 
-<span class='kw'>impl</span> <span class='ident'>fmt</span>::<span class='ident'>Display</span> <span class='kw'>for</span> <span class='ident'>CpuIdVendorInfo</span> {
+<span class='kw'>impl</span> <span class='ident'>fmt</span>::<span class='ident'>Display</span> <span class='kw'>for</span> <span class='ident'>VendorInfo</span> {
     <span class='kw'>fn</span> <span class='ident'>fmt</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>fmt</span>::<span class='ident'>Formatter</span>) <span class='op'>-&gt;</span> <span class='ident'>fmt</span>::<span class='prelude-ty'>Result</span> {
         <span class='kw'>unsafe</span> {
             <span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;{}{}{}&quot;</span>,
@@ -1737,7 +1737,7 @@
 }
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CpuIdFeatureInfo</span> {
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>FeatureInfo</span> {
     <span class='kw'>pub</span> <span class='ident'>eax</span>: <span class='ident'>u32</span>,
     <span class='kw'>pub</span> <span class='ident'>ebx</span>: <span class='ident'>u32</span>,
     <span class='kw'>pub</span> <span class='ident'>ecx</span>: <span class='ident'>FeatureInfoEcx</span>,
@@ -1873,7 +1873,7 @@
 
 
 
-<span class='kw'>impl</span> <span class='ident'>CpuIdFeatureInfo</span> {
+<span class='kw'>impl</span> <span class='ident'>FeatureInfo</span> {
 
     <span class='doccomment'>/// Version Information: Extended Family</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>extended_family_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
@@ -1921,11 +1921,11 @@
     }
 }
 
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CpuIdCacheParameterIter</span> {
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CacheParametersIter</span> {
     <span class='ident'>current</span>: <span class='ident'>u32</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>Iterator</span> <span class='kw'>for</span> <span class='ident'>CpuIdCacheParameterIter</span> {
+<span class='kw'>impl</span> <span class='ident'>Iterator</span> <span class='kw'>for</span> <span class='ident'>CacheParametersIter</span> {
     <span class='kw'>type</span> <span class='ident'>Item</span> <span class='op'>=</span> <span class='ident'>CacheParameter</span>;
 
     <span class='kw'>fn</span> <span class='ident'>next</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>CacheParameter</span><span class='op'>&gt;</span> {
@@ -2049,14 +2049,14 @@
 }
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CpuIdMonitorMwait</span> {
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>MonitorMwaitInfo</span> {
     <span class='ident'>eax</span>: <span class='ident'>u32</span>,
     <span class='ident'>ebx</span>: <span class='ident'>u32</span>,
     <span class='ident'>ecx</span>: <span class='ident'>u32</span>,
     <span class='ident'>edx</span>: <span class='ident'>u32</span>
 }
 
-<span class='kw'>impl</span> <span class='ident'>CpuIdMonitorMwait</span> {
+<span class='kw'>impl</span> <span class='ident'>MonitorMwaitInfo</span> {
 
     <span class='doccomment'>/// Smallest monitor-line size in bytes (default is processor&#39;s monitor granularity)</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>smallest_monitor_line</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u16</span> {
@@ -2121,7 +2121,7 @@
 }
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CpuIdThermalPower</span> {
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>ThermalPowerInfo</span> {
     <span class='ident'>eax</span>: <span class='ident'>ThermalPowerFeaturesEax</span>,
     <span class='ident'>ebx</span>: <span class='ident'>u32</span>,
     <span class='ident'>ecx</span>: <span class='ident'>ThermalPowerFeaturesEcx</span>,
@@ -2163,7 +2163,7 @@
     }
 }
 
-<span class='kw'>impl</span> <span class='ident'>CpuIdThermalPower</span> {
+<span class='kw'>impl</span> <span class='ident'>ThermalPowerInfo</span> {
 
     <span class='doccomment'>/// Number of Interrupt Thresholds in Digital Thermal Sensor</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>dts_irq_threshold</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
@@ -2173,7 +2173,7 @@
 }
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CpuIdExtendedFeature</span> {
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>ExtendedFeatures</span> {
     <span class='ident'>eax</span>: <span class='ident'>u32</span>,
     <span class='ident'>ebx</span>: <span class='ident'>ExtendedFeaturesEbx</span>,
     <span class='ident'>ecx</span>: <span class='ident'>u32</span>,
@@ -2225,11 +2225,11 @@
 }
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CpuIdDirectCacheAccess</span> {
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>DirectCacheAccessInfo</span> {
     <span class='ident'>eax</span>: <span class='ident'>u32</span>
 }
 
-<span class='kw'>impl</span> <span class='ident'>CpuIdDirectCacheAccess</span> {
+<span class='kw'>impl</span> <span class='ident'>DirectCacheAccessInfo</span> {
 
     <span class='doccomment'>/// Value of bits [31:0] of IA32_PLATFORM_DCA_CAP MSR (address 1F8H)</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_dca_cap_value</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
@@ -2239,14 +2239,14 @@
 
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CpuIdPerformanceMonitoring</span> {
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>PerformanceMonitoringInfo</span> {
     <span class='ident'>eax</span>: <span class='ident'>u32</span>,
     <span class='ident'>ebx</span>: <span class='ident'>PerformanceMonitoringFeaturesEbx</span>,
     <span class='ident'>ecx</span>: <span class='ident'>u32</span>,
     <span class='ident'>edx</span>: <span class='ident'>u32</span>
 }
 
-<span class='kw'>impl</span> <span class='ident'>CpuIdPerformanceMonitoring</span> {
+<span class='kw'>impl</span> <span class='ident'>PerformanceMonitoringInfo</span> {
 
     <span class='doccomment'>/// Version ID of architectural performance monitoring. (Bits 07 - 00)</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>version_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
@@ -2306,7 +2306,7 @@
 }
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CpuIdExtendedTopologyIter</span> {
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>ExtendedTopologyIter</span> {
     <span class='ident'>level</span>: <span class='ident'>u32</span>
 }
 
@@ -2362,7 +2362,7 @@
     <span class='ident'>CORE</span> <span class='op'>=</span> <span class='number'>2</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>Iterator</span> <span class='kw'>for</span> <span class='ident'>CpuIdExtendedTopologyIter</span> {
+<span class='kw'>impl</span> <span class='ident'>Iterator</span> <span class='kw'>for</span> <span class='ident'>ExtendedTopologyIter</span> {
     <span class='kw'>type</span> <span class='ident'>Item</span> <span class='op'>=</span> <span class='ident'>ExtendedTopologyLevel</span>;
 
     <span class='kw'>fn</span> <span class='ident'>next</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>ExtendedTopologyLevel</span><span class='op'>&gt;</span> {
@@ -2397,7 +2397,7 @@
 
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>feature_info</span>() {
-    <span class='kw'>let</span> <span class='ident'>finfo</span> <span class='op'>=</span> <span class='ident'>CpuIdFeatureInfo</span> {
+    <span class='kw'>let</span> <span class='ident'>finfo</span> <span class='op'>=</span> <span class='ident'>FeatureInfo</span> {
         <span class='ident'>eax</span>: <span class='number'>198313</span>,
         <span class='ident'>ebx</span>: <span class='number'>34605056</span>,
         <span class='ident'>ecx</span>: <span class='ident'>FeatureInfoEcx</span> { <span class='ident'>bits</span>: <span class='number'>2109399999</span> },
@@ -2418,7 +2418,7 @@
 
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>cache_info</span>() {
-    <span class='kw'>let</span> <span class='ident'>cinfos</span> <span class='op'>=</span> <span class='ident'>CpuIdCacheInfoIter</span> { <span class='ident'>current</span>: <span class='number'>1</span>, <span class='ident'>eax</span>: <span class='number'>1979931137</span>, <span class='ident'>ebx</span>: <span class='number'>15774463</span>, <span class='ident'>ecx</span>: <span class='number'>0</span>, <span class='ident'>edx</span>: <span class='number'>13238272</span> };
+    <span class='kw'>let</span> <span class='ident'>cinfos</span> <span class='op'>=</span> <span class='ident'>CacheInfoIter</span> { <span class='ident'>current</span>: <span class='number'>1</span>, <span class='ident'>eax</span>: <span class='number'>1979931137</span>, <span class='ident'>ebx</span>: <span class='number'>15774463</span>, <span class='ident'>ecx</span>: <span class='number'>0</span>, <span class='ident'>edx</span>: <span class='number'>13238272</span> };
     <span class='kw'>for</span> (<span class='ident'>idx</span>, <span class='ident'>cache</span>) <span class='kw'>in</span> <span class='ident'>cinfos</span>.<span class='ident'>enumerate</span>() {
         <span class='kw'>match</span> <span class='ident'>idx</span> {
             <span class='number'>0</span> <span class='op'>=&gt;</span> <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>cache</span>.<span class='ident'>num</span> <span class='op'>==</span> <span class='number'>0xff</span>),
@@ -2514,7 +2514,7 @@
 
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>monitor_mwait_features</span>() {
-    <span class='kw'>let</span> <span class='ident'>mmfeatures</span> <span class='op'>=</span> <span class='ident'>CpuIdMonitorMwait</span> { <span class='ident'>eax</span>: <span class='number'>64</span>, <span class='ident'>ebx</span>: <span class='number'>64</span>, <span class='ident'>ecx</span>: <span class='number'>3</span>, <span class='ident'>edx</span>: <span class='number'>135456</span> };
+    <span class='kw'>let</span> <span class='ident'>mmfeatures</span> <span class='op'>=</span> <span class='ident'>MonitorMwaitInfo</span> { <span class='ident'>eax</span>: <span class='number'>64</span>, <span class='ident'>ebx</span>: <span class='number'>64</span>, <span class='ident'>ecx</span>: <span class='number'>3</span>, <span class='ident'>edx</span>: <span class='number'>135456</span> };
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>mmfeatures</span>.<span class='ident'>smallest_monitor_line</span>() <span class='op'>==</span> <span class='number'>64</span>);
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>mmfeatures</span>.<span class='ident'>largest_monitor_line</span>() <span class='op'>==</span> <span class='number'>64</span>);
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>mmfeatures</span>.<span class='ident'>extensions_supported</span>());
@@ -2531,7 +2531,7 @@
 
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>thermal_power_features</span>() {
-    <span class='kw'>let</span> <span class='ident'>tpfeatures</span> <span class='op'>=</span> <span class='ident'>CpuIdThermalPower</span> { <span class='ident'>eax</span>: <span class='ident'>ThermalPowerFeaturesEax</span> { <span class='ident'>bits</span>: <span class='number'>119</span> }, <span class='ident'>ebx</span>: <span class='number'>2</span>, <span class='ident'>ecx</span>: <span class='ident'>ThermalPowerFeaturesEcx</span> { <span class='ident'>bits</span>: <span class='number'>9</span> }, <span class='ident'>edx</span>: <span class='number'>0</span> };
+    <span class='kw'>let</span> <span class='ident'>tpfeatures</span> <span class='op'>=</span> <span class='ident'>ThermalPowerInfo</span> { <span class='ident'>eax</span>: <span class='ident'>ThermalPowerFeaturesEax</span> { <span class='ident'>bits</span>: <span class='number'>119</span> }, <span class='ident'>ebx</span>: <span class='number'>2</span>, <span class='ident'>ecx</span>: <span class='ident'>ThermalPowerFeaturesEcx</span> { <span class='ident'>bits</span>: <span class='number'>9</span> }, <span class='ident'>edx</span>: <span class='number'>0</span> };
 
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>tpfeatures</span>.<span class='ident'>eax</span>.<span class='ident'>contains</span>(<span class='ident'>CPU_FEATURE_DTS</span>));
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>tpfeatures</span>.<span class='ident'>eax</span>.<span class='ident'>contains</span>(<span class='ident'>CPU_FEATURE_TURBO_BOOST</span>));
@@ -2548,7 +2548,7 @@
 
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>extended_features</span>() {
-    <span class='kw'>let</span> <span class='ident'>tpfeatures</span> <span class='op'>=</span> <span class='ident'>CpuIdExtendedFeature</span> { <span class='ident'>eax</span>: <span class='number'>0</span>, <span class='ident'>ebx</span>: <span class='ident'>ExtendedFeaturesEbx</span> { <span class='ident'>bits</span>: <span class='number'>641</span> }, <span class='ident'>ecx</span>: <span class='number'>0</span>, <span class='ident'>edx</span>: <span class='number'>0</span> };
+    <span class='kw'>let</span> <span class='ident'>tpfeatures</span> <span class='op'>=</span> <span class='ident'>ExtendedFeatures</span> { <span class='ident'>eax</span>: <span class='number'>0</span>, <span class='ident'>ebx</span>: <span class='ident'>ExtendedFeaturesEbx</span> { <span class='ident'>bits</span>: <span class='number'>641</span> }, <span class='ident'>ecx</span>: <span class='number'>0</span>, <span class='ident'>edx</span>: <span class='number'>0</span> };
 
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>tpfeatures</span>.<span class='ident'>eax</span> <span class='op'>==</span> <span class='number'>0</span>);
 
@@ -2569,14 +2569,14 @@
 
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>direct_cache_access_info</span>() {
-    <span class='kw'>let</span> <span class='ident'>dca</span> <span class='op'>=</span> <span class='ident'>CpuIdDirectCacheAccess</span> { <span class='ident'>eax</span>: <span class='number'>0x1</span> };
+    <span class='kw'>let</span> <span class='ident'>dca</span> <span class='op'>=</span> <span class='ident'>DirectCacheAccessInfo</span> { <span class='ident'>eax</span>: <span class='number'>0x1</span> };
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>dca</span>.<span class='ident'>get_dca_cap_value</span>() <span class='op'>==</span> <span class='number'>0x1</span>);
 }
 
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>performance_monitoring_info</span>() {
     <span class='kw'>let</span> <span class='ident'>cpuid</span> <span class='op'>=</span> <span class='ident'>CpuId</span>;
-    <span class='kw'>let</span> <span class='ident'>pm</span> <span class='op'>=</span> <span class='ident'>CpuIdPerformanceMonitoring</span> { <span class='ident'>eax</span>: <span class='number'>120587267</span>, <span class='ident'>ebx</span>: <span class='ident'>PerformanceMonitoringFeaturesEbx</span> { <span class='ident'>bits</span>: <span class='number'>0</span> }, <span class='ident'>ecx</span>: <span class='number'>0</span>, <span class='ident'>edx</span>: <span class='number'>1539</span> };
+    <span class='kw'>let</span> <span class='ident'>pm</span> <span class='op'>=</span> <span class='ident'>PerformanceMonitoringInfo</span> { <span class='ident'>eax</span>: <span class='number'>120587267</span>, <span class='ident'>ebx</span>: <span class='ident'>PerformanceMonitoringFeaturesEbx</span> { <span class='ident'>bits</span>: <span class='number'>0</span> }, <span class='ident'>ecx</span>: <span class='number'>0</span>, <span class='ident'>edx</span>: <span class='number'>1539</span> };
 
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>pm</span>.<span class='ident'>version_id</span>() <span class='op'>==</span> <span class='number'>3</span>);
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>pm</span>.<span class='ident'>number_of_counters</span>() <span class='op'>==</span> <span class='number'>4</span>);

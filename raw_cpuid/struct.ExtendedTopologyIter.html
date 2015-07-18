@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `CacheInfoIter` struct in crate `raw_cpuid`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, CacheInfoIter">
+    <meta name="description" content="API documentation for the Rust `ExtendedTopologyIter` struct in crate `raw_cpuid`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, ExtendedTopologyIter">
 
-    <title>raw_cpuid::CacheInfoIter - Rust</title>
+    <title>raw_cpuid::ExtendedTopologyIter - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../main.css">
 
@@ -26,7 +26,7 @@
 
     <section class="sidebar">
         
-        <p class='location'><a href='index.html'>raw_cpuid</a></p><script>window.sidebarCurrent = {name: 'CacheInfoIter', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'><a href='index.html'>raw_cpuid</a></p><script>window.sidebarCurrent = {name: 'ExtendedTopologyIter', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </section>
 
     <nav class="sub">
@@ -41,24 +41,15 @@
     </nav>
 
     <section id='main' class="content struct">
-<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>raw_cpuid</a>::<wbr><a class='struct' href=''>CacheInfoIter</a></span><span class='out-of-band'><span id='render-detail'>
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>raw_cpuid</a>::<wbr><a class='struct' href=''>ExtendedTopologyIter</a></span><span class='out-of-band'><span id='render-detail'>
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-781' class='srclink' href='../src/raw_cpuid/lib.rs.html#218-224' title='goto source code'>[src]</a></span></h1>
-<pre class='rust struct'>pub struct CacheInfoIter {
-    pub eax: <a href='http://doc.rust-lang.org/nightly/core/primitive.u32.html'>u32</a>,
-    pub ebx: <a href='http://doc.rust-lang.org/nightly/core/primitive.u32.html'>u32</a>,
-    pub ecx: <a href='http://doc.rust-lang.org/nightly/core/primitive.u32.html'>u32</a>,
-    pub edx: <a href='http://doc.rust-lang.org/nightly/core/primitive.u32.html'>u32</a>,
+        </span><a id='src-8360' class='srclink' href='../src/raw_cpuid/lib.rs.html#980-982' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct ExtendedTopologyIter {
     // some fields omitted
-}</pre><h2 class='fields'>Fields</h2>
-<table><tr class='stab '>
-                                  <td id='structfield.eax'><code>eax</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.ebx'><code>ebx</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.ecx'><code>ecx</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.edx'><code>edx</code></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html' title='core::iter::Iterator'>Iterator</a> for <a class='struct' href='../raw_cpuid/struct.CacheInfoIter.html' title='raw_cpuid::CacheInfoIter'>CacheInfoIter</a></code></h3><div class='impl-items'><h4 id='assoc_type.Item' class='type'><code>type Item = <a class='struct' href='../raw_cpuid/struct.CacheInfo.html' title='raw_cpuid::CacheInfo'>CacheInfo</a></code></h4>
-<h4 id='method.next' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html#method.next' class='fnname'>next</a>(&amp;mut self) -&gt; <a class='enum' href='../core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../raw_cpuid/struct.CacheInfo.html' title='raw_cpuid::CacheInfo'>CacheInfo</a>&gt;</code></h4>
+}</pre><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html' title='core::iter::Iterator'>Iterator</a> for <a class='struct' href='../raw_cpuid/struct.ExtendedTopologyIter.html' title='raw_cpuid::ExtendedTopologyIter'>ExtendedTopologyIter</a></code></h3><div class='impl-items'><h4 id='assoc_type.Item' class='type'><code>type Item = <a class='struct' href='../raw_cpuid/struct.ExtendedTopologyLevel.html' title='raw_cpuid::ExtendedTopologyLevel'>ExtendedTopologyLevel</a></code></h4>
+<h4 id='method.next' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html#method.next' class='fnname'>next</a>(&amp;mut self) -&gt; <a class='enum' href='../core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../raw_cpuid/struct.ExtendedTopologyLevel.html' title='raw_cpuid::ExtendedTopologyLevel'>ExtendedTopologyLevel</a>&gt;</code></h4>
 <h4 id='method.size_hint' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html#method.size_hint' class='fnname'>size_hint</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.tuple.html'>(<a href='http://doc.rust-lang.org/nightly/core/primitive.usize.html'>usize</a>, <a class='enum' href='../core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='http://doc.rust-lang.org/nightly/core/primitive.usize.html'>usize</a>&gt;)</a></code></h4>
 <h4 id='method.count' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html#method.count' class='fnname'>count</a>(self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.usize.html'>usize</a></code></h4>
 <h4 id='method.last' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html#method.last' class='fnname'>last</a>(self) -&gt; <a class='enum' href='../core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;Self::<a class='trait' href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html' title='core::iter::Iterator'>Item</a>&gt;</code></h4>
@@ -99,7 +90,7 @@
 <h4 id='method.reverse_in_place' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html#method.reverse_in_place' class='fnname'>reverse_in_place</a>&lt;'a, T&gt;(&amp;mut self) <span class='where'>where T: 'a, Self: <a class='trait' href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html' title='core::iter::Iterator'>Iterator</a>&lt;Item=&amp;'a mut T&gt; + <a class='trait' href='http://doc.rust-lang.org/nightly/core/iter/trait.DoubleEndedIterator.html' title='core::iter::DoubleEndedIterator'>DoubleEndedIterator</a></span></code></h4>
 <h4 id='method.sum' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html#method.sum' class='fnname'>sum</a>&lt;S = Self::<a class='trait' href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html' title='core::iter::Iterator'>Item</a>&gt;(self) -&gt; S <span class='where'>where S: <a class='trait' href='../core/ops/trait.Add.html' title='core::ops::Add'>Add</a>&lt;Self::<a class='trait' href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html' title='core::iter::Iterator'>Item</a>, Output=S&gt; + <a class='trait' href='http://doc.rust-lang.org/nightly/core/num/trait.Zero.html' title='core::num::Zero'>Zero</a></span></code></h4>
 <h4 id='method.product' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html#method.product' class='fnname'>product</a>&lt;P = Self::<a class='trait' href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html' title='core::iter::Iterator'>Item</a>&gt;(self) -&gt; P <span class='where'>where P: <a class='trait' href='../core/ops/trait.Mul.html' title='core::ops::Mul'>Mul</a>&lt;Self::<a class='trait' href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html' title='core::iter::Iterator'>Item</a>, Output=P&gt; + <a class='trait' href='http://doc.rust-lang.org/nightly/core/num/trait.One.html' title='core::num::One'>One</a></span></code></h4>
-</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../raw_cpuid/struct.CacheInfoIter.html' title='raw_cpuid::CacheInfoIter'>CacheInfoIter</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../raw_cpuid/struct.ExtendedTopologyIter.html' title='raw_cpuid::ExtendedTopologyIter'>ExtendedTopologyIter</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 

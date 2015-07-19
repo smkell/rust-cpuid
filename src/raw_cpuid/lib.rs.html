@@ -2145,6 +2145,33 @@
 <span id="2103">2103</span>
 <span id="2104">2104</span>
 <span id="2105">2105</span>
+<span id="2106">2106</span>
+<span id="2107">2107</span>
+<span id="2108">2108</span>
+<span id="2109">2109</span>
+<span id="2110">2110</span>
+<span id="2111">2111</span>
+<span id="2112">2112</span>
+<span id="2113">2113</span>
+<span id="2114">2114</span>
+<span id="2115">2115</span>
+<span id="2116">2116</span>
+<span id="2117">2117</span>
+<span id="2118">2118</span>
+<span id="2119">2119</span>
+<span id="2120">2120</span>
+<span id="2121">2121</span>
+<span id="2122">2122</span>
+<span id="2123">2123</span>
+<span id="2124">2124</span>
+<span id="2125">2125</span>
+<span id="2126">2126</span>
+<span id="2127">2127</span>
+<span id="2128">2128</span>
+<span id="2129">2129</span>
+<span id="2130">2130</span>
+<span id="2131">2131</span>
+<span id="2132">2132</span>
 </pre><pre class='rust '>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>no_std</span>, <span class='ident'>prelude_import</span>, <span class='ident'>core</span>, <span class='ident'>core_prelude</span>, <span class='ident'>asm</span>, <span class='ident'>raw</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span>
@@ -2234,7 +2261,8 @@
 }
 
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>check_flag</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>flags</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>flag</span>:<span class='ident'>ident</span>) <span class='op'>=&gt;</span> (
+    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>doc</span>:<span class='ident'>meta</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>flags</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>flag</span>:<span class='ident'>ident</span>) <span class='op'>=&gt;</span> (
+        <span class='attribute'>#[<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>doc</span>]</span>
         <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
             <span class='self'>self</span>.<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>flags</span>.<span class='ident'>contains</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>flag</span>)
         }
@@ -2697,177 +2725,177 @@
 }
 
 <span class='kw'>impl</span> <span class='ident'>FeatureInfo</span> {
-    <span class='doccomment'>/// Streaming SIMD Extensions 3 (SSE3). A value of 1 indicates the processor supports this technology.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_sse3</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_SSE3</span>);
 
-    <span class='doccomment'>/// PCLMULQDQ. A value of 1 indicates the processor supports the PCLMULQDQ instruction</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_pclmulqdq</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_PCLMULQDQ</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Streaming SIMD Extensions 3 (SSE3). A value of 1 indicates the processor supports this technology.&quot;</span>,
+                <span class='ident'>has_sse3</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_SSE3</span>);
 
-    <span class='doccomment'>/// 64-bit DS Area. A value of 1 indicates the processor supports DS area using 64-bit layout</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_ds_area</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_DTES64</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;PCLMULQDQ. A value of 1 indicates the processor supports the PCLMULQDQ instruction&quot;</span>,
+                <span class='ident'>has_pclmulqdq</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_PCLMULQDQ</span>);
 
-    <span class='doccomment'>/// MONITOR/MWAIT. A value of 1 indicates the processor supports this feature.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_monitor_mwait</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_MONITOR</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;64-bit DS Area. A value of 1 indicates the processor supports DS area using 64-bit layout&quot;</span>,
+                <span class='ident'>has_ds_area</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_DTES64</span>);
 
-    <span class='doccomment'>/// CPL Qualified Debug Store. A value of 1 indicates the processor supports the extensions to the  Debug Store feature to allow for branch message storage qualified by CPL.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_cpl</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_DSCPL</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;MONITOR/MWAIT. A value of 1 indicates the processor supports this feature.&quot;</span>,
+                <span class='ident'>has_monitor_mwait</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_MONITOR</span>);
 
-    <span class='doccomment'>/// Virtual Machine Extensions. A value of 1 indicates that the processor supports this technology.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_vmx</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_VMX</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;CPL Qualified Debug Store. A value of 1 indicates the processor supports the extensions to the  Debug Store feature to allow for branch message storage qualified by CPL.&quot;</span>,
+                <span class='ident'>has_cpl</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_DSCPL</span>);
 
-    <span class='doccomment'>/// Safer Mode Extensions. A value of 1 indicates that the processor supports this technology. See Chapter 5, Safer Mode Extensions Reference.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_smx</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_SMX</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Virtual Machine Extensions. A value of 1 indicates that the processor supports this technology.&quot;</span>,
+                <span class='ident'>has_vmx</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_VMX</span>);
 
-    <span class='doccomment'>/// Enhanced Intel SpeedStep® technology. A value of 1 indicates that the processor supports this technology.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_eist</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_EIST</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Safer Mode Extensions. A value of 1 indicates that the processor supports this technology. See Chapter 5, Safer Mode Extensions Reference.&quot;</span>,
+                <span class='ident'>has_smx</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_SMX</span>);
 
-    <span class='doccomment'>/// Thermal Monitor 2. A value of 1 indicates whether the processor supports this technology.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_tm2</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_TM2</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Enhanced Intel SpeedStep® technology. A value of 1 indicates that the processor supports this technology.&quot;</span>,
+                <span class='ident'>has_eist</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_EIST</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates the presence of the Supplemental Streaming SIMD Extensions 3 (SSSE3). A value of 0 indicates the instruction extensions are not present in the processor</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_ssse3</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_SSSE3</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Thermal Monitor 2. A value of 1 indicates whether the processor supports this technology.&quot;</span>,
+                <span class='ident'>has_tm2</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_TM2</span>);
 
-    <span class='doccomment'>/// L1 Context ID. A value of 1 indicates the L1 data cache mode can be set to either adaptive mode or shared mode. A value of 0 indicates this feature is not supported. See definition of the IA32_MISC_ENABLE MSR Bit 24 (L1 Data Cache Context Mode) for details.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_cnxtid</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_CNXTID</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates the presence of the Supplemental Streaming SIMD Extensions 3 (SSSE3). A value of 0 indicates the instruction extensions are not present in the processor&quot;</span>,
+                <span class='ident'>has_ssse3</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_SSSE3</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates the processor supports FMA extensions using YMM state.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_fma</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_FMA</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;L1 Context ID. A value of 1 indicates the L1 data cache mode can be set to either adaptive mode or shared mode. A value of 0 indicates this feature is not supported. See definition of the IA32_MISC_ENABLE MSR Bit 24 (L1 Data Cache Context Mode) for details.&quot;</span>,
+                <span class='ident'>has_cnxtid</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_CNXTID</span>);
 
-    <span class='doccomment'>/// CMPXCHG16B Available. A value of 1 indicates that the feature is available. See the CMPXCHG8B/CMPXCHG16B Compare and Exchange Bytes section. 14</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_cmpxchg16b</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_CMPXCHG16B</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates the processor supports FMA extensions using YMM state.&quot;</span>,
+                <span class='ident'>has_fma</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_FMA</span>);
 
-    <span class='doccomment'>/// Perfmon and Debug Capability: A value of 1 indicates the processor supports the performance   and debug feature indication MSR IA32_PERF_CAPABILITIES.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_pdcm</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_PDCM</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;CMPXCHG16B Available. A value of 1 indicates that the feature is available. See the CMPXCHG8B/CMPXCHG16B Compare and Exchange Bytes section. 14&quot;</span>,
+                <span class='ident'>has_cmpxchg16b</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_CMPXCHG16B</span>);
 
-    <span class='doccomment'>/// Process-context identifiers. A value of 1 indicates that the processor supports PCIDs and the software may set CR4.PCIDE to 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_pcid</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_PCID</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Perfmon and Debug Capability: A value of 1 indicates the processor supports the performance   and debug feature indication MSR IA32_PERF_CAPABILITIES.&quot;</span>,
+                <span class='ident'>has_pdcm</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_PDCM</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates the processor supports the ability to prefetch data from a memory mapped device.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_dca</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_DCA</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Process-context identifiers. A value of 1 indicates that the processor supports PCIDs and the software may set CR4.PCIDE to 1.&quot;</span>,
+                <span class='ident'>has_pcid</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_PCID</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates that the processor supports SSE4.1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_sse41</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_SSE41</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates the processor supports the ability to prefetch data from a memory mapped device.&quot;</span>,
+                <span class='ident'>has_dca</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_DCA</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates that the processor supports SSE4.2.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_sse42</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_SSE42</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates that the processor supports SSE4.1.&quot;</span>,
+                <span class='ident'>has_sse41</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_SSE41</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates that the processor supports x2APIC feature.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_x2apic</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_X2APIC</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates that the processor supports SSE4.2.&quot;</span>,
+                <span class='ident'>has_sse42</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_SSE42</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates that the processor supports MOVBE instruction.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_movbe</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_MOVBE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates that the processor supports x2APIC feature.&quot;</span>,
+                <span class='ident'>has_x2apic</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_X2APIC</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates that the processor supports the POPCNT instruction.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_popcnt</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_POPCNT</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates that the processor supports MOVBE instruction.&quot;</span>,
+                <span class='ident'>has_movbe</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_MOVBE</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates that the processors local APIC timer supports one-shot operation using a TSC deadline value.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_tsc_deadline</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_TSC_DEADLINE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates that the processor supports the POPCNT instruction.&quot;</span>,
+                <span class='ident'>has_popcnt</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_POPCNT</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates that the processor supports the AESNI instruction extensions.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_aesni</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_AESNI</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates that the processors local APIC timer supports one-shot operation using a TSC deadline value.&quot;</span>,
+                <span class='ident'>has_tsc_deadline</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_TSC_DEADLINE</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates that the processor supports the XSAVE/XRSTOR processor extended states feature, the XSETBV/XGETBV instructions, and XCR0.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_xsave</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_XSAVE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates that the processor supports the AESNI instruction extensions.&quot;</span>,
+                <span class='ident'>has_aesni</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_AESNI</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates that the OS has enabled XSETBV/XGETBV instructions to access XCR0, and support for processor extended state management using XSAVE/XRSTOR.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_oxsave</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_OSXSAVE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates that the processor supports the XSAVE/XRSTOR processor extended states feature, the XSETBV/XGETBV instructions, and XCR0.&quot;</span>,
+                <span class='ident'>has_xsave</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_XSAVE</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates the processor supports the AVX instruction extensions.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_avx</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_AVX</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates that the OS has enabled XSETBV/XGETBV instructions to access XCR0, and support for processor extended state management using XSAVE/XRSTOR.&quot;</span>,
+                <span class='ident'>has_oxsave</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_OSXSAVE</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates that processor supports 16-bit floating-point conversion instructions.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_f16c</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_F16C</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates the processor supports the AVX instruction extensions.&quot;</span>,
+                <span class='ident'>has_avx</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_AVX</span>);
 
-    <span class='doccomment'>/// A value of 1 indicates that processor supports RDRAND instruction.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_rdrand</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_RDRAND</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates that processor supports 16-bit floating-point conversion instructions.&quot;</span>,
+                <span class='ident'>has_f16c</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_F16C</span>);
 
-    <span class='doccomment'>/// Floating Point Unit On-Chip. The processor contains an x87 FPU.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_fpu</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_FPU</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;A value of 1 indicates that processor supports RDRAND instruction.&quot;</span>,
+                <span class='ident'>has_rdrand</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_RDRAND</span>);
 
-    <span class='doccomment'>/// Virtual 8086 Mode Enhancements. Virtual 8086 mode enhancements, including CR4.VME for controlling the feature, CR4.PVI for protected mode virtual interrupts, software interrupt indirection, expansion of the TSS with the software indirection bitmap, and EFLAGS.VIF and EFLAGS.VIP flags.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_vme</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_VME</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Floating Point Unit On-Chip. The processor contains an x87 FPU.&quot;</span>,
+                <span class='ident'>has_fpu</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_FPU</span>);
 
-    <span class='doccomment'>/// Debugging Extensions. Support for I/O breakpoints, including CR4.DE for controlling the feature, and optional trapping of accesses to DR4 and DR5.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_de</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_DE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Virtual 8086 Mode Enhancements. Virtual 8086 mode enhancements, including CR4.VME for controlling the feature, CR4.PVI for protected mode virtual interrupts, software interrupt indirection, expansion of the TSS with the software indirection bitmap, and EFLAGS.VIF and EFLAGS.VIP flags.&quot;</span>,
+                <span class='ident'>has_vme</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_VME</span>);
 
-    <span class='doccomment'>/// Page Size Extension. Large pages of size 4 MByte are supported, including CR4.PSE for controlling the feature, the defined dirty bit in PDE (Page Directory Entries), optional reserved bit trapping in CR3, PDEs, and PTEs.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_pse</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PSE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Debugging Extensions. Support for I/O breakpoints, including CR4.DE for controlling the feature, and optional trapping of accesses to DR4 and DR5.&quot;</span>,
+                <span class='ident'>has_de</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_DE</span>);
 
-    <span class='doccomment'>/// Time Stamp Counter. The RDTSC instruction is supported, including CR4.TSD for controlling privilege.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_tsc</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_TSC</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Page Size Extension. Large pages of size 4 MByte are supported, including CR4.PSE for controlling the feature, the defined dirty bit in PDE (Page Directory Entries), optional reserved bit trapping in CR3, PDEs, and PTEs.&quot;</span>,
+                <span class='ident'>has_pse</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PSE</span>);
 
-    <span class='doccomment'>/// Model Specific Registers RDMSR and WRMSR Instructions. The RDMSR and WRMSR instructions are supported. Some of the MSRs are implementation dependent.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_msr</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_MSR</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Time Stamp Counter. The RDTSC instruction is supported, including CR4.TSD for controlling privilege.&quot;</span>,
+                <span class='ident'>has_tsc</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_TSC</span>);
 
-    <span class='doccomment'>/// Physical Address Extension. Physical addresses greater than 32 bits are supported: extended page table entry formats, an extra level in the page translation tables is defined, 2-MByte pages are supported instead of 4 Mbyte pages if PAE bit is 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_pae</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PAE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Model Specific Registers RDMSR and WRMSR Instructions. The RDMSR and WRMSR instructions are supported. Some of the MSRs are implementation dependent.&quot;</span>,
+                <span class='ident'>has_msr</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_MSR</span>);
 
-    <span class='doccomment'>/// Machine Check Exception. Exception 18 is defined for Machine Checks, including CR4.MCE for controlling the feature. This feature does not define the model-specific implementations of machine-check error logging, reporting, and processor shutdowns. Machine Check exception handlers may have to depend on processor version to do model specific processing of the exception, or test for the presence of the Machine Check feature.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_mce</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_MCE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Physical Address Extension. Physical addresses greater than 32 bits are supported: extended page table entry formats, an extra level in the page translation tables is defined, 2-MByte pages are supported instead of 4 Mbyte pages if PAE bit is 1.&quot;</span>,
+                <span class='ident'>has_pae</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PAE</span>);
 
-    <span class='doccomment'>/// CMPXCHG8B Instruction. The compare-and-exchange 8 bytes (64 bits) instruction is supported (implicitly locked and atomic).</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_cmpxchg8b</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_CX8</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Machine Check Exception. Exception 18 is defined for Machine Checks, including CR4.MCE for controlling the feature. This feature does not define the model-specific implementations of machine-check error logging, reporting, and processor shutdowns. Machine Check exception handlers may have to depend on processor version to do model specific processing of the exception, or test for the presence of the Machine Check feature.&quot;</span>,
+                <span class='ident'>has_mce</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_MCE</span>);
 
-    <span class='doccomment'>/// APIC On-Chip. The processor contains an Advanced Programmable Interrupt Controller (APIC), responding to memory mapped commands in the physical address range FFFE0000H to FFFE0FFFH (by default - some processors permit the APIC to be relocated).</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_apic</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_APIC</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;CMPXCHG8B Instruction. The compare-and-exchange 8 bytes (64 bits) instruction is supported (implicitly locked and atomic).&quot;</span>,
+                <span class='ident'>has_cmpxchg8b</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_CX8</span>);
 
-    <span class='doccomment'>/// SYSENTER and SYSEXIT Instructions. The SYSENTER and SYSEXIT and associated MSRs are supported.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_sysenter_sysexit</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_SEP</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;APIC On-Chip. The processor contains an Advanced Programmable Interrupt Controller (APIC), responding to memory mapped commands in the physical address range FFFE0000H to FFFE0FFFH (by default - some processors permit the APIC to be relocated).&quot;</span>,
+                <span class='ident'>has_apic</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_APIC</span>);
 
-    <span class='doccomment'>/// Memory Type Range Registers. MTRRs are supported. The MTRRcap MSR contains feature bits that describe what memory types are supported, how many variable MTRRs are supported, and whether fixed MTRRs are supported.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_mtrr</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_MTRR</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;SYSENTER and SYSEXIT Instructions. The SYSENTER and SYSEXIT and associated MSRs are supported.&quot;</span>,
+                <span class='ident'>has_sysenter_sysexit</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_SEP</span>);
 
-    <span class='doccomment'>/// Page Global Bit. The global bit is supported in paging-structure entries that map a page, indicating TLB entries that are common to different processes and need not be flushed. The CR4.PGE bit controls this feature.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_pge</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PGE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Memory Type Range Registers. MTRRs are supported. The MTRRcap MSR contains feature bits that describe what memory types are supported, how many variable MTRRs are supported, and whether fixed MTRRs are supported.&quot;</span>,
+                <span class='ident'>has_mtrr</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_MTRR</span>);
 
-    <span class='doccomment'>/// Machine Check Architecture. The Machine Check Architecture, which provides a compatible mechanism for error reporting in P6 family, Pentium 4, Intel Xeon processors, and future processors, is supported. The MCG_CAP MSR contains feature bits describing how many banks of error reporting MSRs are supported.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_mca</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_MCA</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Page Global Bit. The global bit is supported in paging-structure entries that map a page, indicating TLB entries that are common to different processes and need not be flushed. The CR4.PGE bit controls this feature.&quot;</span>,
+                <span class='ident'>has_pge</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PGE</span>);
 
-    <span class='doccomment'>/// Conditional Move Instructions. The conditional move instruction CMOV is supported. In addition, if x87 FPU is present as indicated by the CPUID.FPU feature bit, then the FCOMI and FCMOV instructions are supported</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_cmov</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_CMOV</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Machine Check Architecture. The Machine Check Architecture, which provides a compatible mechanism for error reporting in P6 family, Pentium 4, Intel Xeon processors, and future processors, is supported. The MCG_CAP MSR contains feature bits describing how many banks of error reporting MSRs are supported.&quot;</span>,
+                <span class='ident'>has_mca</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_MCA</span>);
 
-    <span class='doccomment'>/// Page Attribute Table. Page Attribute Table is supported. This feature augments the Memory Type Range Registers (MTRRs), allowing an operating system to specify attributes of memory accessed through a linear address on a 4KB granularity.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_pat</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PAT</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Conditional Move Instructions. The conditional move instruction CMOV is supported. In addition, if x87 FPU is present as indicated by the CPUID.FPU feature bit, then the FCOMI and FCMOV instructions are supported&quot;</span>,
+                <span class='ident'>has_cmov</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_CMOV</span>);
 
-    <span class='doccomment'>/// 36-Bit Page Size Extension. 4-MByte pages addressing physical memory beyond 4 GBytes are supported with 32-bit paging. This feature indicates that upper bits of the physical address of a 4-MByte page are encoded in bits 20:13 of the page-directory entry. Such physical addresses are limited by MAXPHYADDR and may be up to 40 bits in size.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_pse36</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PSE36</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Page Attribute Table. Page Attribute Table is supported. This feature augments the Memory Type Range Registers (MTRRs), allowing an operating system to specify attributes of memory accessed through a linear address on a 4KB granularity.&quot;</span>,
+                <span class='ident'>has_pat</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PAT</span>);
 
-    <span class='doccomment'>/// Processor Serial Number. The processor supports the 96-bit processor identification number feature and the feature is enabled.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_psn</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PSN</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;36-Bit Page Size Extension. 4-MByte pages addressing physical memory beyond 4 GBytes are supported with 32-bit paging. This feature indicates that upper bits of the physical address of a 4-MByte page are encoded in bits 20:13 of the page-directory entry. Such physical addresses are limited by MAXPHYADDR and may be up to 40 bits in size.&quot;</span>,
+                <span class='ident'>has_pse36</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PSE36</span>);
 
-    <span class='doccomment'>/// CLFLUSH Instruction. CLFLUSH Instruction is supported.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_clflush</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_CLFSH</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Processor Serial Number. The processor supports the 96-bit processor identification number feature and the feature is enabled.&quot;</span>,
+                <span class='ident'>has_psn</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PSN</span>);
 
-    <span class='doccomment'>/// Debug Store. The processor supports the ability to write debug information into a memory resident buffer. This feature is used by the branch trace store (BTS) and precise event-based sampling (PEBS) facilities (see Chapter 23, Introduction to Virtual-Machine Extensions, in the Intel® 64 and IA-32 Architectures Software Developers Manual, Volume 3C).</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_ds</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_DS</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;CLFLUSH Instruction. CLFLUSH Instruction is supported.&quot;</span>,
+                <span class='ident'>has_clflush</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_CLFSH</span>);
 
-    <span class='doccomment'>/// Thermal Monitor and Software Controlled Clock Facilities. The processor implements internal MSRs that allow processor temperature to be monitored and processor performance to be modulated in predefined duty cycles under software control.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_acpi</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_ACPI</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Debug Store. The processor supports the ability to write debug information into a memory resident buffer. This feature is used by the branch trace store (BTS) and precise event-based sampling (PEBS) facilities (see Chapter 23, Introduction to Virtual-Machine Extensions, in the Intel® 64 and IA-32 Architectures Software Developers Manual, Volume 3C).&quot;</span>,
+                <span class='ident'>has_ds</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_DS</span>);
 
-    <span class='doccomment'>/// Intel MMX Technology. The processor supports the Intel MMX technology.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_mmx</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_MMX</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Thermal Monitor and Software Controlled Clock Facilities. The processor implements internal MSRs that allow processor temperature to be monitored and processor performance to be modulated in predefined duty cycles under software control.&quot;</span>,
+                <span class='ident'>has_acpi</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_ACPI</span>);
 
-    <span class='doccomment'>/// FXSAVE and FXRSTOR Instructions. The FXSAVE and FXRSTOR instructions are supported for fast save and restore of the floating point context. Presence of this bit also indicates that CR4.OSFXSR is available for an operating system to indicate that it supports the FXSAVE and FXRSTOR instructions.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_fxsave_fxstor</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_FXSR</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Intel MMX Technology. The processor supports the Intel MMX technology.&quot;</span>,
+                <span class='ident'>has_mmx</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_MMX</span>);
 
-    <span class='doccomment'>/// SSE. The processor supports the SSE extensions.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_sse</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_SSE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;FXSAVE and FXRSTOR Instructions. The FXSAVE and FXRSTOR instructions are supported for fast save and restore of the floating point context. Presence of this bit also indicates that CR4.OSFXSR is available for an operating system to indicate that it supports the FXSAVE and FXRSTOR instructions.&quot;</span>,
+                <span class='ident'>has_fxsave_fxstor</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_FXSR</span>);
 
-    <span class='doccomment'>/// SSE2. The processor supports the SSE2 extensions.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_sse2</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_SSE2</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;SSE. The processor supports the SSE extensions.&quot;</span>,
+                <span class='ident'>has_sse</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_SSE</span>);
 
-    <span class='doccomment'>/// Self Snoop. The processor supports the management of conflicting memory types by performing a snoop of its own cache structure for transactions issued to the bus.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_ss</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_SS</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;SSE2. The processor supports the SSE2 extensions.&quot;</span>,
+                <span class='ident'>has_sse2</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_SSE2</span>);
 
-    <span class='doccomment'>/// Max APIC IDs reserved field is Valid. A value of 0 for HTT indicates there is only a single logical processor in the package and software should assume only a single APIC ID is reserved.  A value of 1 for HTT indicates the value in CPUID.1.EBX[23:16] (the Maximum number of addressable IDs for logical processors in this package) is valid for the package.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_htt</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_HTT</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Self Snoop. The processor supports the management of conflicting memory types by performing a snoop of its own cache structure for transactions issued to the bus.&quot;</span>,
+                <span class='ident'>has_ss</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_SS</span>);
 
-    <span class='doccomment'>/// Thermal Monitor. The processor implements the thermal monitor automatic thermal control circuitry (TCC).</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_tm</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_TM</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Max APIC IDs reserved field is Valid. A value of 0 for HTT indicates there is only a single logical processor in the package and software should assume only a single APIC ID is reserved.  A value of 1 for HTT indicates the value in CPUID.1.EBX[23:16] (the Maximum number of addressable IDs for logical processors in this package) is valid for the package.&quot;</span>,
+                <span class='ident'>has_htt</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_HTT</span>);
 
-    <span class='doccomment'>/// Pending Break Enable. The processor supports the use of the FERR#/PBE# pin when the processor is in the stop-clock state (STPCLK# is asserted) to signal the processor that an interrupt is pending and that the processor should return to normal operation to handle the interrupt. Bit 10 (PBE enable) in the IA32_MISC_ENABLE MSR enables this capability.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_pbe</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PBE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Thermal Monitor. The processor implements the thermal monitor automatic thermal control circuitry (TCC).&quot;</span>,
+                <span class='ident'>has_tm</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_TM</span>);
 
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Pending Break Enable. The processor supports the use of the FERR#/PBE# pin when the processor is in the stop-clock state (STPCLK# is asserted) to signal the processor that an interrupt is pending and that the processor should return to normal operation to handle the interrupt. Bit 10 (PBE enable) in the IA32_MISC_ENABLE MSR enables this capability.&quot;</span>,
+                <span class='ident'>has_pbe</span>, <span class='ident'>edx</span>, <span class='ident'>CPU_FEATURE_PBE</span>);
 
 
 }
@@ -3251,35 +3279,30 @@
 }
 
 <span class='kw'>impl</span> <span class='ident'>ThermalPowerInfo</span> {
-    <span class='doccomment'>/// Digital temperature sensor is supported if set.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_dts</span>, <span class='ident'>eax</span>, <span class='ident'>CPU_FEATURE_DTS</span>);
 
-    <span class='doccomment'>/// Intel Turbo Boost Technology Available (see description of IA32_MISC_ENABLE[38]).</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_turbo_boost</span>, <span class='ident'>eax</span>, <span class='ident'>CPU_FEATURE_TURBO_BOOST</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Digital temperature sensor is supported if set.&quot;</span>,
+                <span class='ident'>has_dts</span>, <span class='ident'>eax</span>, <span class='ident'>CPU_FEATURE_DTS</span>);
 
-    <span class='doccomment'>/// ARAT. APIC-Timer-always-running feature is supported if set.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_arat</span>, <span class='ident'>eax</span>, <span class='ident'>CPU_FEATURE_ARAT</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Intel Turbo Boost Technology Available (see description of IA32_MISC_ENABLE[38]).&quot;</span>,
+                <span class='ident'>has_turbo_boost</span>, <span class='ident'>eax</span>, <span class='ident'>CPU_FEATURE_TURBO_BOOST</span>);
 
-    <span class='doccomment'>/// PLN. Power limit notification controls are supported if set.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_pln</span>, <span class='ident'>eax</span>, <span class='ident'>CPU_FEATURE_PLN</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;ARAT. APIC-Timer-always-running feature is supported if set.&quot;</span>,
+                <span class='ident'>has_arat</span>, <span class='ident'>eax</span>, <span class='ident'>CPU_FEATURE_ARAT</span>);
 
-    <span class='doccomment'>/// ECMD. Clock modulation duty cycle extension is supported if set.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_ecmd</span>, <span class='ident'>eax</span>, <span class='ident'>CPU_FEATURE_ECMD</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;PLN. Power limit notification controls are supported if set.&quot;</span>,
+                <span class='ident'>has_pln</span>, <span class='ident'>eax</span>, <span class='ident'>CPU_FEATURE_PLN</span>);
 
-    <span class='doccomment'>/// PTM. Package thermal management is supported if set.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_ptm</span>, <span class='ident'>eax</span>, <span class='ident'>CPU_FEATURE_PTM</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;ECMD. Clock modulation duty cycle extension is supported if set.&quot;</span>,
+                <span class='ident'>has_ecmd</span>, <span class='ident'>eax</span>, <span class='ident'>CPU_FEATURE_ECMD</span>);
 
-    <span class='doccomment'>/// Hardware Coordination Feedback Capability (Presence of IA32_MPERF</span>
-    <span class='doccomment'>/// and IA32_APERF). The capability to provide a measure of</span>
-    <span class='doccomment'>/// delivered processor performance (since last reset of the counters),</span>
-    <span class='doccomment'>/// as a percentage of expected processor performance at frequency specified</span>
-    <span class='doccomment'>/// in CPUID Brand String Bits 02 - 01</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_hw_coord_feedback</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_HW_COORD_FEEDBACK</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;PTM. Package thermal management is supported if set.&quot;</span>,
+                <span class='ident'>has_ptm</span>, <span class='ident'>eax</span>, <span class='ident'>CPU_FEATURE_PTM</span>);
 
-    <span class='doccomment'>/// The processor supports performance-energy bias preference</span>
-    <span class='doccomment'>/// if CPUID.06H:ECX.SETBH[bit 3] is set and it also implies the</span>
-    <span class='doccomment'>/// presence of a new architectural MSR called IA32_ENERGY_PERF_BIAS (1B0H)</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_energy_bias_pref</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_ENERGY_BIAS_PREF</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Hardware Coordination Feedback Capability (Presence of IA32_MPERF and IA32_APERF). The capability to provide a measure of delivered processor performance (since last reset of the counters), as a percentage of expected processor performance at frequency specified in CPUID Brand String Bits 02 - 01&quot;</span>,
+                <span class='ident'>has_hw_coord_feedback</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_HW_COORD_FEEDBACK</span>);
+
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;The processor supports performance-energy bias preference if CPUID.06H:ECX.SETBH[bit 3] is set and it also implies the presence of a new architectural MSR called IA32_ENERGY_PERF_BIAS (1B0H)&quot;</span>,
+                <span class='ident'>has_energy_bias_pref</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_ENERGY_BIAS_PREF</span>);
 }
 
 <span class='macro'>bitflags</span><span class='macro'>!</span> {
@@ -3335,41 +3358,42 @@
 }
 
 <span class='kw'>impl</span> <span class='ident'>ExtendedFeatures</span> {
-    <span class='doccomment'>/// FSGSBASE. Supports RDFSBASE/RDGSBASE/WRFSBASE/WRGSBASE if 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_fsgsbase</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_FSGSBASE</span>);
 
-    <span class='doccomment'>/// IA32_TSC_ADJUST MSR is supported if 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_tsc_adjust_msr</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_ADJUST_MSR</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;FSGSBASE. Supports RDFSBASE/RDGSBASE/WRFSBASE/WRGSBASE if 1.&quot;</span>,
+                <span class='ident'>has_fsgsbase</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_FSGSBASE</span>);
 
-    <span class='doccomment'>/// BMI1</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_bmi1</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_BMI1</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;IA32_TSC_ADJUST MSR is supported if 1.&quot;</span>,
+                <span class='ident'>has_tsc_adjust_msr</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_ADJUST_MSR</span>);
 
-    <span class='doccomment'>/// HLE</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_hle</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_HLE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;BMI1&quot;</span>,
+                <span class='ident'>has_bmi1</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_BMI1</span>);
 
-    <span class='doccomment'>/// AVX2</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_avx2</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_AVX2</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;HLE&quot;</span>,
+                <span class='ident'>has_hle</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_HLE</span>);
 
-    <span class='doccomment'>/// SMEP. Supports Supervisor-Mode Execution Prevention if 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_smep</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_SMEP</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;AVX2&quot;</span>,
+                <span class='ident'>has_avx2</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_AVX2</span>);
 
-    <span class='doccomment'>/// BMI2</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_bmi2</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_BMI2</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;SMEP. Supports Supervisor-Mode Execution Prevention if 1.&quot;</span>,
+                <span class='ident'>has_smep</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_SMEP</span>);
 
-    <span class='doccomment'>/// Supports Enhanced REP MOVSB/STOSB if 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_rep_movsb_stosb</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_REP_MOVSB_STOSB</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;BMI2&quot;</span>,
+                <span class='ident'>has_bmi2</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_BMI2</span>);
 
-    <span class='doccomment'>/// INVPCID. If 1, supports INVPCID instruction for system software that manages process-context identifiers.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_invpcid</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_INVPCID</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Supports Enhanced REP MOVSB/STOSB if 1.&quot;</span>,
+                <span class='ident'>has_rep_movsb_stosb</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_REP_MOVSB_STOSB</span>);
 
-    <span class='doccomment'>/// RTM</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_rtm</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_RTM</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;INVPCID. If 1, supports INVPCID instruction for system software that manages process-context identifiers.&quot;</span>,
+                <span class='ident'>has_invpcid</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_INVPCID</span>);
 
-    <span class='doccomment'>/// Supports Quality of Service Monitoring (QM) capability if 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_qm</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_QM</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;RTM&quot;</span>,
+                <span class='ident'>has_rtm</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_RTM</span>);
 
-    <span class='doccomment'>/// Deprecates FPU CS and FPU DS values if 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>has_fpu_cs_ds_deprecated</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_DEPRECATE_FPU_CS_DS</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Supports Quality of Service Monitoring (QM) capability if 1.&quot;</span>,
+                <span class='ident'>has_qm</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_QM</span>);
+
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Deprecates FPU CS and FPU DS values if 1.&quot;</span>,
+                <span class='ident'>has_fpu_cs_ds_deprecated</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_DEPRECATE_FPU_CS_DS</span>);
 }
 
 
@@ -3470,26 +3494,27 @@
         <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>edx</span>, <span class='number'>5</span>, <span class='number'>12</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
     }
 
-    <span class='doccomment'>/// Core cycle event not available if 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>is_core_cyc_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_CORE_CYC_EV_UNAVAILABLE</span>);
 
-    <span class='doccomment'>/// Instruction retired event not available if 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>is_inst_ret_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_INST_RET_EV_UNAVAILABLE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Core cycle event not available if 1.&quot;</span>,
+                <span class='ident'>is_core_cyc_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_CORE_CYC_EV_UNAVAILABLE</span>);
 
-    <span class='doccomment'>/// Reference cycles event not available if 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>is_ref_cycle_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_REF_CYC_EV_UNAVAILABLE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Instruction retired event not available if 1.&quot;</span>,
+                <span class='ident'>is_inst_ret_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_INST_RET_EV_UNAVAILABLE</span>);
 
-    <span class='doccomment'>/// Last-level cache reference event not available if 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>is_cache_ref_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_CACHE_REF_EV_UNAVAILABLE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Reference cycles event not available if 1.&quot;</span>,
+                <span class='ident'>is_ref_cycle_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_REF_CYC_EV_UNAVAILABLE</span>);
 
-    <span class='doccomment'>/// Last-level cache misses event not available if 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>is_ll_cache_miss_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_LL_CACHE_MISS_EV_UNAVAILABLE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Last-level cache reference event not available if 1.&quot;</span>,
+                <span class='ident'>is_cache_ref_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_CACHE_REF_EV_UNAVAILABLE</span>);
 
-    <span class='doccomment'>/// Branch instruction retired event not available if 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>is_branch_inst_ret_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_BRANCH_INST_RET_EV_UNAVAILABLE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Last-level cache misses event not available if 1.&quot;</span>,
+                <span class='ident'>is_ll_cache_miss_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_LL_CACHE_MISS_EV_UNAVAILABLE</span>);
 
-    <span class='doccomment'>/// Branch mispredict retired event not available if 1.</span>
-    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>is_branch_midpred_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_BRANCH_MISPRED_EV_UNAVAILABLE</span>);
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Branch instruction retired event not available if 1.&quot;</span>,
+                <span class='ident'>is_branch_inst_ret_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_BRANCH_INST_RET_EV_UNAVAILABLE</span>);
+
+    <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Branch mispredict retired event not available if 1.&quot;</span>,
+                <span class='ident'>is_branch_midpred_ev_unavailable</span>, <span class='ident'>ebx</span>, <span class='ident'>CPU_FEATURE_BRANCH_MISPRED_EV_UNAVAILABLE</span>);
 }
 
 <span class='macro'>bitflags</span><span class='macro'>!</span> {
@@ -4216,8 +4241,6 @@
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='op'>!</span><span class='ident'>qos</span>.<span class='ident'>has_l3_occupancy_monitoring</span>());
 }
 
-
-<span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
 <span class='kw'>fn</span> <span class='ident'>extended_functions</span>() {
     <span class='kw'>let</span> <span class='ident'>ef</span> <span class='op'>=</span> <span class='ident'>ExtendedFunctionInfo</span> { <span class='ident'>max_eax_value</span>: <span class='number'>8</span>,
@@ -4250,6 +4273,37 @@
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>ef</span>.<span class='ident'>cache_size</span>().<span class='ident'>unwrap</span>() <span class='op'>==</span> <span class='number'>256</span>);
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>ef</span>.<span class='ident'>physical_address_bits</span>().<span class='ident'>unwrap</span>() <span class='op'>==</span> <span class='number'>36</span>);
     <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>ef</span>.<span class='ident'>linear_address_bits</span>().<span class='ident'>unwrap</span>() <span class='op'>==</span> <span class='number'>48</span>);
+}
+
+<span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
+<span class='attribute'>#[<span class='ident'>test</span>]</span>
+<span class='kw'>fn</span> <span class='ident'>readme_test</span>() {
+    <span class='comment'>/*
+    let cpuid = CpuId::new();
+
+    match cpuid.get_vendor_info() {
+        Some(vf) =&gt; assert!(vf.as_string() == &quot;GenuineIntel&quot;),
+        None =&gt; ()
+    }
+
+    let has_sse = match cpuid.get_feature_info() {
+        Some(finfo) =&gt; finfo.has_sse(),
+        None =&gt; false
+    };
+
+    if has_sse {
+        println!(&quot;CPU supports SSE!&quot;);
+    }
+
+    match cpuid.get_cache_parameters() {
+        Some(cparams) =&gt; {
+            for cache in cparams {
+                let size = cache.associativity() * cache.physical_line_partitions() * cache.coherency_line_size() * cache.sets();
+                println!(&quot;L{}-Cache size is {}&quot;, cache.level(), size);
+            }
+        },
+        None =&gt; println!(&quot;No cache parameter information available&quot;),
+    }*/</span>
 }
 </pre>
 </section>

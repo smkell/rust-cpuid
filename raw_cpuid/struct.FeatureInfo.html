@@ -45,18 +45,67 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1801' class='srclink' href='../src/raw_cpuid/lib.rs.html#411-416' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-2190' class='srclink' href='../src/raw_cpuid/lib.rs.html#544-549' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct FeatureInfo {
-    pub eax: <a href='http://doc.rust-lang.org/nightly/core/primitive.u32.html'>u32</a>,
-    pub ebx: <a href='http://doc.rust-lang.org/nightly/core/primitive.u32.html'>u32</a>,
-    pub ecx: <a class='struct' href='../raw_cpuid/struct.FeatureInfoEcx.html' title='raw_cpuid::FeatureInfoEcx'>FeatureInfoEcx</a>,
-    pub edx: <a class='struct' href='../raw_cpuid/struct.FeatureInfoEdx.html' title='raw_cpuid::FeatureInfoEdx'>FeatureInfoEdx</a>,
-}</pre><h2 class='fields'>Fields</h2>
-<table><tr class='stab '>
-                                  <td id='structfield.eax'><code>eax</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.ebx'><code>ebx</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.ecx'><code>ecx</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.edx'><code>edx</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../raw_cpuid/struct.FeatureInfo.html' title='raw_cpuid::FeatureInfo'>FeatureInfo</a></code></h3><div class='impl-items'><h4 id='method.extended_family_id' class='method'><code>fn <a href='#method.extended_family_id' class='fnname'>extended_family_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
+    // some fields omitted
+}</pre><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../raw_cpuid/struct.FeatureInfo.html' title='raw_cpuid::FeatureInfo'>FeatureInfo</a></code></h3><div class='impl-items'><h4 id='method.has_sse3' class='method'><code>fn <a href='#method.has_sse3' class='fnname'>has_sse3</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_pclmulqdq' class='method'><code>fn <a href='#method.has_pclmulqdq' class='fnname'>has_pclmulqdq</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_ds_area' class='method'><code>fn <a href='#method.has_ds_area' class='fnname'>has_ds_area</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_monitor_mwait' class='method'><code>fn <a href='#method.has_monitor_mwait' class='fnname'>has_monitor_mwait</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_cpl' class='method'><code>fn <a href='#method.has_cpl' class='fnname'>has_cpl</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_vmx' class='method'><code>fn <a href='#method.has_vmx' class='fnname'>has_vmx</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_smx' class='method'><code>fn <a href='#method.has_smx' class='fnname'>has_smx</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_eist' class='method'><code>fn <a href='#method.has_eist' class='fnname'>has_eist</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_tm2' class='method'><code>fn <a href='#method.has_tm2' class='fnname'>has_tm2</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_ssse3' class='method'><code>fn <a href='#method.has_ssse3' class='fnname'>has_ssse3</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_cnxtid' class='method'><code>fn <a href='#method.has_cnxtid' class='fnname'>has_cnxtid</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_fma' class='method'><code>fn <a href='#method.has_fma' class='fnname'>has_fma</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_cmpxchg16b' class='method'><code>fn <a href='#method.has_cmpxchg16b' class='fnname'>has_cmpxchg16b</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_pdcm' class='method'><code>fn <a href='#method.has_pdcm' class='fnname'>has_pdcm</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_pcid' class='method'><code>fn <a href='#method.has_pcid' class='fnname'>has_pcid</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_dca' class='method'><code>fn <a href='#method.has_dca' class='fnname'>has_dca</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_sse41' class='method'><code>fn <a href='#method.has_sse41' class='fnname'>has_sse41</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_sse42' class='method'><code>fn <a href='#method.has_sse42' class='fnname'>has_sse42</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_x2apic' class='method'><code>fn <a href='#method.has_x2apic' class='fnname'>has_x2apic</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_movbe' class='method'><code>fn <a href='#method.has_movbe' class='fnname'>has_movbe</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_popcnt' class='method'><code>fn <a href='#method.has_popcnt' class='fnname'>has_popcnt</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_tsc_deadline' class='method'><code>fn <a href='#method.has_tsc_deadline' class='fnname'>has_tsc_deadline</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_aesni' class='method'><code>fn <a href='#method.has_aesni' class='fnname'>has_aesni</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_xsave' class='method'><code>fn <a href='#method.has_xsave' class='fnname'>has_xsave</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_oxsave' class='method'><code>fn <a href='#method.has_oxsave' class='fnname'>has_oxsave</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_avx' class='method'><code>fn <a href='#method.has_avx' class='fnname'>has_avx</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_f16c' class='method'><code>fn <a href='#method.has_f16c' class='fnname'>has_f16c</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_rdrand' class='method'><code>fn <a href='#method.has_rdrand' class='fnname'>has_rdrand</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_fpu' class='method'><code>fn <a href='#method.has_fpu' class='fnname'>has_fpu</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_vme' class='method'><code>fn <a href='#method.has_vme' class='fnname'>has_vme</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_de' class='method'><code>fn <a href='#method.has_de' class='fnname'>has_de</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_pse' class='method'><code>fn <a href='#method.has_pse' class='fnname'>has_pse</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_tsc' class='method'><code>fn <a href='#method.has_tsc' class='fnname'>has_tsc</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_msr' class='method'><code>fn <a href='#method.has_msr' class='fnname'>has_msr</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_pae' class='method'><code>fn <a href='#method.has_pae' class='fnname'>has_pae</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_mce' class='method'><code>fn <a href='#method.has_mce' class='fnname'>has_mce</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_cmpxchg8b' class='method'><code>fn <a href='#method.has_cmpxchg8b' class='fnname'>has_cmpxchg8b</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_apic' class='method'><code>fn <a href='#method.has_apic' class='fnname'>has_apic</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_sysenter_sysexit' class='method'><code>fn <a href='#method.has_sysenter_sysexit' class='fnname'>has_sysenter_sysexit</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_mtrr' class='method'><code>fn <a href='#method.has_mtrr' class='fnname'>has_mtrr</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_pge' class='method'><code>fn <a href='#method.has_pge' class='fnname'>has_pge</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_mca' class='method'><code>fn <a href='#method.has_mca' class='fnname'>has_mca</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_cmov' class='method'><code>fn <a href='#method.has_cmov' class='fnname'>has_cmov</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_pat' class='method'><code>fn <a href='#method.has_pat' class='fnname'>has_pat</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_pse36' class='method'><code>fn <a href='#method.has_pse36' class='fnname'>has_pse36</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_psn' class='method'><code>fn <a href='#method.has_psn' class='fnname'>has_psn</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_clflush' class='method'><code>fn <a href='#method.has_clflush' class='fnname'>has_clflush</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_ds' class='method'><code>fn <a href='#method.has_ds' class='fnname'>has_ds</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_acpi' class='method'><code>fn <a href='#method.has_acpi' class='fnname'>has_acpi</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_mmx' class='method'><code>fn <a href='#method.has_mmx' class='fnname'>has_mmx</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_fxsave_fxstor' class='method'><code>fn <a href='#method.has_fxsave_fxstor' class='fnname'>has_fxsave_fxstor</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_sse' class='method'><code>fn <a href='#method.has_sse' class='fnname'>has_sse</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_sse2' class='method'><code>fn <a href='#method.has_sse2' class='fnname'>has_sse2</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_ss' class='method'><code>fn <a href='#method.has_ss' class='fnname'>has_ss</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_htt' class='method'><code>fn <a href='#method.has_htt' class='fnname'>has_htt</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_tm' class='method'><code>fn <a href='#method.has_tm' class='fnname'>has_tm</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.has_pbe' class='method'><code>fn <a href='#method.has_pbe' class='fnname'>has_pbe</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='struct' href='../raw_cpuid/struct.FeatureInfo.html' title='raw_cpuid::FeatureInfo'>FeatureInfo</a></code></h3><div class='impl-items'><h4 id='method.extended_family_id' class='method'><code>fn <a href='#method.extended_family_id' class='fnname'>extended_family_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
 <div class='docblock'><p>Version Information: Extended Family</p>
 </div><h4 id='method.extended_model_id' class='method'><code>fn <a href='#method.extended_model_id' class='fnname'>extended_model_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
 <div class='docblock'><p>Version Information: Extended Model</p>

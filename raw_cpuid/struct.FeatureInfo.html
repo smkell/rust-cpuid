@@ -45,10 +45,28 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-2190' class='srclink' href='../src/raw_cpuid/lib.rs.html#545-550' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-2190' class='srclink' href='../src/raw_cpuid/lib.rs.html#591-596' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct FeatureInfo {
     // some fields omitted
-}</pre><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../raw_cpuid/struct.FeatureInfo.html' title='raw_cpuid::FeatureInfo'>FeatureInfo</a></code></h3><div class='impl-items'><h4 id='method.has_sse3' class='method'><code>fn <a href='#method.has_sse3' class='fnname'>has_sse3</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
+}</pre><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../raw_cpuid/struct.FeatureInfo.html' title='raw_cpuid::FeatureInfo'>FeatureInfo</a></code></h3><div class='impl-items'><h4 id='method.extended_family_id' class='method'><code>fn <a href='#method.extended_family_id' class='fnname'>extended_family_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
+<div class='docblock'><p>Version Information: Extended Family</p>
+</div><h4 id='method.extended_model_id' class='method'><code>fn <a href='#method.extended_model_id' class='fnname'>extended_model_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
+<div class='docblock'><p>Version Information: Extended Model</p>
+</div><h4 id='method.family_id' class='method'><code>fn <a href='#method.family_id' class='fnname'>family_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
+<div class='docblock'><p>Version Information: Family</p>
+</div><h4 id='method.model_id' class='method'><code>fn <a href='#method.model_id' class='fnname'>model_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
+<div class='docblock'><p>Version Information: Model</p>
+</div><h4 id='method.stepping_id' class='method'><code>fn <a href='#method.stepping_id' class='fnname'>stepping_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
+<div class='docblock'><p>Version Information: Stepping ID</p>
+</div><h4 id='method.brand_index' class='method'><code>fn <a href='#method.brand_index' class='fnname'>brand_index</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
+<div class='docblock'><p>Brand Index</p>
+</div><h4 id='method.cflush_cache_line_size' class='method'><code>fn <a href='#method.cflush_cache_line_size' class='fnname'>cflush_cache_line_size</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
+<div class='docblock'><p>CLFLUSH line size (Value ∗ 8 = cache line size in bytes)</p>
+</div><h4 id='method.initial_local_apic_id' class='method'><code>fn <a href='#method.initial_local_apic_id' class='fnname'>initial_local_apic_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
+<div class='docblock'><p>Initial APIC ID</p>
+</div><h4 id='method.max_logical_processor_ids' class='method'><code>fn <a href='#method.max_logical_processor_ids' class='fnname'>max_logical_processor_ids</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
+<div class='docblock'><p>Maximum number of addressable IDs for logical processors in this physical package.</p>
+</div><h4 id='method.has_sse3' class='method'><code>fn <a href='#method.has_sse3' class='fnname'>has_sse3</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
 <div class='docblock'><p>Streaming SIMD Extensions 3 (SSE3). A value of 1 indicates the processor supports this technology.</p>
 </div><h4 id='method.has_pclmulqdq' class='method'><code>fn <a href='#method.has_pclmulqdq' class='fnname'>has_pclmulqdq</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
 <div class='docblock'><p>PCLMULQDQ. A value of 1 indicates the processor supports the PCLMULQDQ instruction</p>
@@ -162,24 +180,6 @@
 <div class='docblock'><p>Thermal Monitor. The processor implements the thermal monitor automatic thermal control circuitry (TCC).</p>
 </div><h4 id='method.has_pbe' class='method'><code>fn <a href='#method.has_pbe' class='fnname'>has_pbe</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.bool.html'>bool</a></code></h4>
 <div class='docblock'><p>Pending Break Enable. The processor supports the use of the FERR#/PBE# pin when the processor is in the stop-clock state (STPCLK# is asserted) to signal the processor that an interrupt is pending and that the processor should return to normal operation to handle the interrupt. Bit 10 (PBE enable) in the IA32_MISC_ENABLE MSR enables this capability.</p>
-</div></div><h3 class='impl'><code>impl <a class='struct' href='../raw_cpuid/struct.FeatureInfo.html' title='raw_cpuid::FeatureInfo'>FeatureInfo</a></code></h3><div class='impl-items'><h4 id='method.extended_family_id' class='method'><code>fn <a href='#method.extended_family_id' class='fnname'>extended_family_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
-<div class='docblock'><p>Version Information: Extended Family</p>
-</div><h4 id='method.extended_model_id' class='method'><code>fn <a href='#method.extended_model_id' class='fnname'>extended_model_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
-<div class='docblock'><p>Version Information: Extended Model</p>
-</div><h4 id='method.family_id' class='method'><code>fn <a href='#method.family_id' class='fnname'>family_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
-<div class='docblock'><p>Version Information: Family</p>
-</div><h4 id='method.model_id' class='method'><code>fn <a href='#method.model_id' class='fnname'>model_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
-<div class='docblock'><p>Version Information: Model</p>
-</div><h4 id='method.stepping_id' class='method'><code>fn <a href='#method.stepping_id' class='fnname'>stepping_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
-<div class='docblock'><p>Version Information: Stepping ID</p>
-</div><h4 id='method.brand_index' class='method'><code>fn <a href='#method.brand_index' class='fnname'>brand_index</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
-<div class='docblock'><p>Brand Index</p>
-</div><h4 id='method.cflush_cache_line_size' class='method'><code>fn <a href='#method.cflush_cache_line_size' class='fnname'>cflush_cache_line_size</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
-<div class='docblock'><p>CLFLUSH line size (Value ∗ 8 = cache line size in bytes)</p>
-</div><h4 id='method.initial_local_apic_id' class='method'><code>fn <a href='#method.initial_local_apic_id' class='fnname'>initial_local_apic_id</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
-<div class='docblock'><p>Initial APIC ID</p>
-</div><h4 id='method.max_logical_processor_ids' class='method'><code>fn <a href='#method.max_logical_processor_ids' class='fnname'>max_logical_processor_ids</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/core/primitive.u8.html'>u8</a></code></h4>
-<div class='docblock'><p>Maximum number of addressable IDs for logical processors in this physical package.</p>
 </div></div><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../raw_cpuid/struct.FeatureInfo.html' title='raw_cpuid::FeatureInfo'>FeatureInfo</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>

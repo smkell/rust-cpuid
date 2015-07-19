@@ -2172,6 +2172,51 @@
 <span id="2130">2130</span>
 <span id="2131">2131</span>
 <span id="2132">2132</span>
+<span id="2133">2133</span>
+<span id="2134">2134</span>
+<span id="2135">2135</span>
+<span id="2136">2136</span>
+<span id="2137">2137</span>
+<span id="2138">2138</span>
+<span id="2139">2139</span>
+<span id="2140">2140</span>
+<span id="2141">2141</span>
+<span id="2142">2142</span>
+<span id="2143">2143</span>
+<span id="2144">2144</span>
+<span id="2145">2145</span>
+<span id="2146">2146</span>
+<span id="2147">2147</span>
+<span id="2148">2148</span>
+<span id="2149">2149</span>
+<span id="2150">2150</span>
+<span id="2151">2151</span>
+<span id="2152">2152</span>
+<span id="2153">2153</span>
+<span id="2154">2154</span>
+<span id="2155">2155</span>
+<span id="2156">2156</span>
+<span id="2157">2157</span>
+<span id="2158">2158</span>
+<span id="2159">2159</span>
+<span id="2160">2160</span>
+<span id="2161">2161</span>
+<span id="2162">2162</span>
+<span id="2163">2163</span>
+<span id="2164">2164</span>
+<span id="2165">2165</span>
+<span id="2166">2166</span>
+<span id="2167">2167</span>
+<span id="2168">2168</span>
+<span id="2169">2169</span>
+<span id="2170">2170</span>
+<span id="2171">2171</span>
+<span id="2172">2172</span>
+<span id="2173">2173</span>
+<span id="2174">2174</span>
+<span id="2175">2175</span>
+<span id="2176">2176</span>
+<span id="2177">2177</span>
 </pre><pre class='rust '>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>no_std</span>, <span class='ident'>prelude_import</span>, <span class='ident'>core</span>, <span class='ident'>core_prelude</span>, <span class='ident'>asm</span>, <span class='ident'>raw</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span>
@@ -2203,6 +2248,9 @@
 }
 
 
+<span class='doccomment'>/// Macro to choose between `cpuid1` and `cpuid2`.</span>
+<span class='doccomment'>/// Note: This is a low-level macro to query cpuid directly.</span>
+<span class='doccomment'>/// If in doubt use `CpuId` instead.</span>
 <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>cpuid</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>eax</span>:<span class='ident'>expr</span>)
@@ -2214,6 +2262,8 @@
 }
 
 <span class='doccomment'>/// Execute CPUID instruction with eax and ecx register set.</span>
+<span class='doccomment'>/// Note: This is a low-level function to query cpuid directly.</span>
+<span class='doccomment'>/// If in doubt use `CpuId` instead.</span>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>cpuid2</span>(<span class='ident'>eax</span>: <span class='ident'>u32</span>, <span class='ident'>ecx</span>: <span class='ident'>u32</span>) <span class='op'>-&gt;</span> <span class='ident'>CpuIdResult</span> {
     <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='ident'>CpuIdResult</span> { <span class='ident'>eax</span>: <span class='number'>0</span>, <span class='ident'>ebx</span>: <span class='number'>0</span>, <span class='ident'>ecx</span>: <span class='number'>0</span>, <span class='ident'>edx</span>: <span class='number'>0</span> };
 
@@ -2229,6 +2279,8 @@
 }
 
 <span class='doccomment'>/// Execute CPUID instruction with eax register set.</span>
+<span class='doccomment'>/// Note: This is a low-level function to query cpuid directly.</span>
+<span class='doccomment'>/// If in doubt use `CpuId` instead.</span>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>cpuid1</span>(<span class='ident'>eax</span>: <span class='ident'>u32</span>) <span class='op'>-&gt;</span> <span class='ident'>CpuIdResult</span> {
     <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='ident'>CpuIdResult</span> { <span class='ident'>eax</span>: <span class='number'>0</span>, <span class='ident'>ebx</span>: <span class='number'>0</span>, <span class='ident'>ecx</span>: <span class='number'>0</span>, <span class='ident'>edx</span>: <span class='number'>0</span> };
 
@@ -2269,16 +2321,22 @@
     )
 }
 
+<span class='doccomment'>/// Main type used to query for information about the CPU we&#39;re running on.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CpuId</span> {
     <span class='ident'>max_eax_value</span>: <span class='ident'>u32</span>,
 }
 
+<span class='doccomment'>/// Low-level data-structure to store result of cpuid instruction.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>, <span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>Default</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CpuIdResult</span> {
+    <span class='doccomment'>/// Return value EAX register</span>
     <span class='kw'>pub</span> <span class='ident'>eax</span>: <span class='ident'>u32</span>,
+    <span class='doccomment'>/// Return value EBX register</span>
     <span class='kw'>pub</span> <span class='ident'>ebx</span>: <span class='ident'>u32</span>,
+    <span class='doccomment'>/// Return value ECX register</span>
     <span class='kw'>pub</span> <span class='ident'>ecx</span>: <span class='ident'>u32</span>,
+    <span class='doccomment'>/// Return value EDX register</span>
     <span class='kw'>pub</span> <span class='ident'>edx</span>: <span class='ident'>u32</span>,
 }
 
@@ -2299,6 +2357,7 @@
 
 <span class='kw'>impl</span> <span class='ident'>CpuId</span> {
 
+    <span class='doccomment'>/// Return new CPUID struct.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>() <span class='op'>-&gt;</span> <span class='ident'>CpuId</span> {
         <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_VENDOR_INFO</span>);
         <span class='ident'>CpuId</span> { <span class='ident'>max_eax_value</span>: <span class='ident'>res</span>.<span class='ident'>eax</span> }
@@ -2308,6 +2367,9 @@
         <span class='ident'>val</span> <span class='op'>&lt;=</span> <span class='self'>self</span>.<span class='ident'>max_eax_value</span>
     }
 
+    <span class='doccomment'>/// Return information about vendor.</span>
+    <span class='doccomment'>/// This is typically a ASCII readable string such as</span>
+    <span class='doccomment'>/// GenuineIntel for Intel CPUs or AuthenticAMD for AMD CPUs.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_vendor_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>VendorInfo</span><span class='op'>&gt;</span> {
         <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>leaf_is_supported</span>(<span class='ident'>EAX_VENDOR_INFO</span>) {
             <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_VENDOR_INFO</span>);
@@ -2318,6 +2380,7 @@
         }
     }
 
+    <span class='doccomment'>/// Query a set of features that are available on this CPU.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_feature_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>FeatureInfo</span><span class='op'>&gt;</span> {
         <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>leaf_is_supported</span>(<span class='ident'>EAX_FEATURE_INFO</span>) {
             <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_FEATURE_INFO</span>);
@@ -2332,6 +2395,8 @@
         }
     }
 
+    <span class='doccomment'>/// Query basic information about caches. This will just return an index</span>
+    <span class='doccomment'>/// into a static table of cache descriptions (see `CACHE_INFO_TABLE`).</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_cache_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>CacheInfoIter</span><span class='op'>&gt;</span> {
         <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>leaf_is_supported</span>(<span class='ident'>EAX_CACHE_INFO</span>) {
             <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_CACHE_INFO</span>);
@@ -2346,6 +2411,7 @@
         }
     }
 
+    <span class='doccomment'>/// Retrieve serial number of processor.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_processor_serial</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>ProcessorSerial</span><span class='op'>&gt;</span> {
         <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>leaf_is_supported</span>(<span class='ident'>EAX_PROCESSOR_SERIAL</span>) {
             <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_PROCESSOR_SERIAL</span>);
@@ -2357,6 +2423,9 @@
 
     }
 
+    <span class='doccomment'>/// Retrieve more elaborate information about caches (as opposed</span>
+    <span class='doccomment'>/// to `get_cache_info`). This will tell us about associativity,</span>
+    <span class='doccomment'>/// set size, line size etc. for each level of the cache hierarchy.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_cache_parameters</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>CacheParametersIter</span><span class='op'>&gt;</span> {
         <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>leaf_is_supported</span>(<span class='ident'>EAX_CACHE_PARAMETERS</span>) {
             <span class='prelude-val'>Some</span>(<span class='ident'>CacheParametersIter</span> { <span class='ident'>current</span>: <span class='number'>0</span> })
@@ -2366,6 +2435,7 @@
         }
     }
 
+    <span class='doccomment'>/// Information about how monitor/mwait works on this CPU.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_monitor_mwait_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>MonitorMwaitInfo</span><span class='op'>&gt;</span> {
         <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>leaf_is_supported</span>(<span class='ident'>EAX_MONITOR_MWAIT_INFO</span>) {
             <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_MONITOR_MWAIT_INFO</span>);
@@ -2376,6 +2446,7 @@
         }
     }
 
+    <span class='doccomment'>/// Query information about thermal and power management features of the CPU.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_thermal_power_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>ThermalPowerInfo</span><span class='op'>&gt;</span> {
         <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>leaf_is_supported</span>(<span class='ident'>EAX_THERMAL_POWER_INFO</span>) {
             <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_THERMAL_POWER_INFO</span>);
@@ -2389,6 +2460,7 @@
         }
     }
 
+    <span class='doccomment'>/// Find out about more features supported by this CPU.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_extended_feature_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>ExtendedFeatures</span><span class='op'>&gt;</span> {
         <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>leaf_is_supported</span>(<span class='ident'>EAX_STRUCTURED_EXTENDED_FEATURE_INFO</span>) {
             <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_STRUCTURED_EXTENDED_FEATURE_INFO</span>);
@@ -2404,6 +2476,7 @@
 
     }
 
+    <span class='doccomment'>/// Direct cache access info.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_direct_cache_access_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>DirectCacheAccessInfo</span><span class='op'>&gt;</span> {
         <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>leaf_is_supported</span>(<span class='ident'>EAX_DIRECT_CACHE_ACCESS_INFO</span>) {
             <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_DIRECT_CACHE_ACCESS_INFO</span>);
@@ -2414,6 +2487,7 @@
         }
     }
 
+    <span class='doccomment'>/// Info about performance monitoring (how many counters etc.).</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_performance_monitoring_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>PerformanceMonitoringInfo</span><span class='op'>&gt;</span> {
         <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>leaf_is_supported</span>(<span class='ident'>EAX_PERFORMANCE_MONITOR_INFO</span>) {
             <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_PERFORMANCE_MONITOR_INFO</span>);
@@ -2427,6 +2501,7 @@
         }
     }
 
+    <span class='doccomment'>/// Information about topology (how many cores and what kind of cores).</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_extended_topology_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>ExtendedTopologyIter</span><span class='op'>&gt;</span> {
         <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>leaf_is_supported</span>(<span class='ident'>EAX_EXTENDED_TOPOLOGY_INFO</span>) {
             <span class='prelude-val'>Some</span>(<span class='ident'>ExtendedTopologyIter</span> { <span class='ident'>level</span>: <span class='number'>0</span> })
@@ -2436,6 +2511,7 @@
         }
     }
 
+    <span class='doccomment'>/// Information for saving/restoring extended register state.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_extended_state_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>ExtendedStateInfo</span><span class='op'>&gt;</span> {
         <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>leaf_is_supported</span>(<span class='ident'>EAX_EXTENDED_STATE_INFO</span>) {
             <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_EXTENDED_STATE_INFO</span>, <span class='number'>0</span>);
@@ -2449,6 +2525,7 @@
         }
     }
 
+    <span class='doccomment'>/// QoS informations.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_quality_of_service_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>QoSInfo</span><span class='op'>&gt;</span> {
         <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_QOS_INFO</span>, <span class='number'>0</span>);
         <span class='kw'>let</span> <span class='ident'>res1</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_QOS_INFO</span>, <span class='number'>1</span>);
@@ -2463,6 +2540,8 @@
         }
     }
 
+    <span class='doccomment'>/// Extended functionality of CPU described here (including more supported features).</span>
+    <span class='doccomment'>/// This also contains a more detailed CPU model identifier.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_extended_function_info</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>ExtendedFunctionInfo</span><span class='op'>&gt;</span> {
         <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_EXTENDED_FUNCTION_INFO</span>);
 
@@ -2499,6 +2578,8 @@
 }
 
 <span class='kw'>impl</span> <span class='ident'>VendorInfo</span> {
+
+    <span class='doccomment'>/// Return vendor identification as human readable string.</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>as_string</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='ident'>str</span> {
         <span class='kw'>unsafe</span> {
             <span class='kw'>let</span> <span class='ident'>brand_string_start</span> <span class='op'>=</span> <span class='ident'>transmute</span>::<span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>VendorInfo</span>, <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>);
@@ -2509,6 +2590,7 @@
     }
 }
 
+<span class='doccomment'>/// Used to iterate over cache information contained in cpuid instruction.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CacheInfoIter</span> {
     <span class='ident'>current</span>: <span class='ident'>u32</span>,
@@ -2521,7 +2603,11 @@
 <span class='kw'>impl</span> <span class='ident'>Iterator</span> <span class='kw'>for</span> <span class='ident'>CacheInfoIter</span> {
     <span class='kw'>type</span> <span class='ident'>Item</span> <span class='op'>=</span> <span class='ident'>CacheInfo</span>;
 
+    <span class='doccomment'>/// Iterate over all cache information.</span>
     <span class='kw'>fn</span> <span class='ident'>next</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>CacheInfo</span><span class='op'>&gt;</span> {
+        <span class='comment'>// Every byte of the 4 register values returned by cpuid</span>
+        <span class='comment'>// can contain information about a cache (except the</span>
+        <span class='comment'>// very first one).</span>
         <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>current</span> <span class='op'>&gt;=</span> <span class='number'>4</span><span class='op'>*</span><span class='number'>4</span> {
             <span class='kw'>return</span> <span class='prelude-val'>None</span>;
         }
@@ -2563,10 +2649,14 @@
     <span class='ident'>PREFETCH</span>,
 }
 
+<span class='doccomment'>/// Describes any kind of cache (TLB, Data and Instruction caches plus prefetchers).</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CacheInfo</span> {
+    <span class='doccomment'>/// Number as retrieved from cpuid</span>
     <span class='kw'>pub</span> <span class='ident'>num</span>: <span class='ident'>u8</span>,
+    <span class='doccomment'>/// Cache type</span>
     <span class='kw'>pub</span> <span class='ident'>typ</span>: <span class='ident'>CacheInfoType</span>,
+    <span class='doccomment'>/// Description of the cache (from Intel Manual)</span>
     <span class='kw'>pub</span> <span class='ident'>desc</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span>,
 }
 
@@ -2585,6 +2675,7 @@
     }
 }
 
+<span class='doccomment'>/// This table is taken from Intel manual (Section CPUID instruction).</span>
 <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>CACHE_INFO_TABLE</span>: [<span class='ident'>CacheInfo</span>; <span class='number'>103</span>] <span class='op'>=</span> [
     <span class='ident'>CacheInfo</span>{<span class='ident'>num</span>: <span class='number'>0x00</span>, <span class='ident'>typ</span>: <span class='ident'>CacheInfoType</span>::<span class='ident'>GENERAL</span>, <span class='ident'>desc</span>: <span class='string'>&quot;Null descriptor, this byte contains no information&quot;</span>},
     <span class='ident'>CacheInfo</span>{<span class='ident'>num</span>: <span class='number'>0x01</span>, <span class='ident'>typ</span>: <span class='ident'>CacheInfoType</span>::<span class='ident'>TLB</span>, <span class='ident'>desc</span>: <span class='string'>&quot;Instruction TLB: 4 KByte pages, 4-way set associative, 32 entries&quot;</span>},
@@ -2725,6 +2816,51 @@
 }
 
 <span class='kw'>impl</span> <span class='ident'>FeatureInfo</span> {
+
+    <span class='doccomment'>/// Version Information: Extended Family</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>extended_family_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
+        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>eax</span>, <span class='number'>20</span>, <span class='number'>27</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
+    }
+
+    <span class='doccomment'>/// Version Information: Extended Model</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>extended_model_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
+        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>eax</span>, <span class='number'>16</span>, <span class='number'>19</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
+    }
+
+    <span class='doccomment'>/// Version Information: Family</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>family_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
+        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>eax</span>, <span class='number'>8</span>, <span class='number'>11</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
+    }
+
+    <span class='doccomment'>/// Version Information: Model</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>model_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
+        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>eax</span>, <span class='number'>4</span>, <span class='number'>7</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
+    }
+
+    <span class='doccomment'>/// Version Information: Stepping ID</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>stepping_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
+        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>eax</span>, <span class='number'>0</span>, <span class='number'>3</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
+    }
+
+    <span class='doccomment'>/// Brand Index</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>brand_index</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
+        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>ebx</span>, <span class='number'>0</span>, <span class='number'>7</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
+    }
+
+    <span class='doccomment'>/// CLFLUSH line size (Value ∗ 8 = cache line size in bytes)</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>cflush_cache_line_size</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
+        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>ebx</span>, <span class='number'>8</span>, <span class='number'>15</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
+    }
+
+    <span class='doccomment'>/// Initial APIC ID</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>initial_local_apic_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
+        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>ebx</span>, <span class='number'>24</span>, <span class='number'>31</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
+    }
+
+    <span class='doccomment'>/// Maximum number of addressable IDs for logical processors in this physical package.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>max_logical_processor_ids</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
+        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>ebx</span>, <span class='number'>16</span>, <span class='number'>23</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
+    }
 
     <span class='macro'>check_flag</span><span class='macro'>!</span>(<span class='ident'>doc</span> <span class='op'>=</span> <span class='string'>&quot;Streaming SIMD Extensions 3 (SSE3). A value of 1 indicates the processor supports this technology.&quot;</span>,
                 <span class='ident'>has_sse3</span>, <span class='ident'>ecx</span>, <span class='ident'>CPU_FEATURE_SSE3</span>);
@@ -3027,56 +3163,6 @@
     }
 }
 
-
-
-<span class='kw'>impl</span> <span class='ident'>FeatureInfo</span> {
-
-    <span class='doccomment'>/// Version Information: Extended Family</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>extended_family_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
-        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>eax</span>, <span class='number'>20</span>, <span class='number'>27</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
-    }
-
-    <span class='doccomment'>/// Version Information: Extended Model</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>extended_model_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
-        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>eax</span>, <span class='number'>16</span>, <span class='number'>19</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
-    }
-
-    <span class='doccomment'>/// Version Information: Family</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>family_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
-        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>eax</span>, <span class='number'>8</span>, <span class='number'>11</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
-    }
-
-    <span class='doccomment'>/// Version Information: Model</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>model_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
-        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>eax</span>, <span class='number'>4</span>, <span class='number'>7</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
-    }
-
-    <span class='doccomment'>/// Version Information: Stepping ID</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>stepping_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
-        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>eax</span>, <span class='number'>0</span>, <span class='number'>3</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
-    }
-
-    <span class='doccomment'>/// Brand Index</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>brand_index</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
-        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>ebx</span>, <span class='number'>0</span>, <span class='number'>7</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
-    }
-
-    <span class='doccomment'>/// CLFLUSH line size (Value ∗ 8 = cache line size in bytes)</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>cflush_cache_line_size</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
-        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>ebx</span>, <span class='number'>8</span>, <span class='number'>15</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
-    }
-
-    <span class='doccomment'>/// Initial APIC ID</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>initial_local_apic_id</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
-        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>ebx</span>, <span class='number'>24</span>, <span class='number'>31</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
-    }
-
-    <span class='doccomment'>/// Maximum number of addressable IDs for logical processors in this physical package.</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>max_logical_processor_ids</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
-        <span class='ident'>get_bits</span>(<span class='self'>self</span>.<span class='ident'>ebx</span>, <span class='number'>16</span>, <span class='number'>23</span>) <span class='kw'>as</span> <span class='ident'>u8</span>
-    }
-}
-
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>CacheParametersIter</span> {
     <span class='ident'>current</span>: <span class='ident'>u32</span>,
 }
@@ -3084,6 +3170,9 @@
 <span class='kw'>impl</span> <span class='ident'>Iterator</span> <span class='kw'>for</span> <span class='ident'>CacheParametersIter</span> {
     <span class='kw'>type</span> <span class='ident'>Item</span> <span class='op'>=</span> <span class='ident'>CacheParameter</span>;
 
+    <span class='doccomment'>/// Iterate over all caches for this CPU.</span>
+    <span class='doccomment'>/// Note: cpuid is called every-time we this function to get information</span>
+    <span class='doccomment'>/// about next cache.</span>
     <span class='kw'>fn</span> <span class='ident'>next</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>CacheParameter</span><span class='op'>&gt;</span> {
         <span class='kw'>let</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>cpuid</span><span class='macro'>!</span>(<span class='ident'>EAX_CACHE_PARAMETERS</span>, <span class='self'>self</span>.<span class='ident'>current</span>);
         <span class='kw'>let</span> <span class='ident'>cp</span> <span class='op'>=</span> <span class='ident'>CacheParameter</span> { <span class='ident'>eax</span>: <span class='ident'>res</span>.<span class='ident'>eax</span>, <span class='ident'>ebx</span>: <span class='ident'>res</span>.<span class='ident'>ebx</span>, <span class='ident'>ecx</span>: <span class='ident'>res</span>.<span class='ident'>ecx</span>, <span class='ident'>edx</span>: <span class='ident'>res</span>.<span class='ident'>edx</span> };
@@ -3595,6 +3684,7 @@
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>PartialEq</span>, <span class='ident'>Eq</span>, <span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>TopologyType</span> {
     <span class='ident'>INVALID</span> <span class='op'>=</span> <span class='number'>0</span>,
+    <span class='doccomment'>/// Hyper-thread (Simultaneous multithreading)</span>
     <span class='ident'>SMT</span> <span class='op'>=</span> <span class='number'>1</span>,
     <span class='ident'>CORE</span> <span class='op'>=</span> <span class='number'>2</span>,
 }
